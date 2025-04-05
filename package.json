@@ -1,0 +1,40 @@
+{
+  "name": "i18n-validator",
+  "version": "0.1.0",
+  "description": "Lightweight i18n validation for language and region codes",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.ts",
+    "update": "tsx src/update.ts",
+    "test": "tsx tests/index.test.ts",
+    "lint": "biome lint",
+    "format": "biome format --write",
+    "check": "biome check",
+    "check:fix": "biome check --write",
+    "check:fix:all": "biome check --write --unsafe",
+    "typecheck": "tsc --noEmit",
+    "clean": "git clean -xdf .cache .turbo dist node_modules"
+  },
+  "keywords": [
+    "i18n",
+    "validation",
+    "language",
+    "bcp47",
+    "iso639"
+  ],
+  "author": "LoadingALIAS",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "axios": "^1.8.4",
+    "biome": "^0.3.3",
+    "esbuild": "^0.25.2",
+    "husky": "^9.1.7",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3"
+  }
+}
