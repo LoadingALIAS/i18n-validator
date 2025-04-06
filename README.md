@@ -1,8 +1,9 @@
-# ALIAS Research - i18n-validator — Language & Region Codes Toolkit
+# i18n-validator
+**A single source of truth for language and regional codes.**
 
-> A blazing-fast, type-safe, zero-dependency, MIT licensed way to validate, normalize, and resolve ISO-639-1, ISO-639-2, ISO-639-3, ISO-3166-1, ISO-3166-2, and BCP 47 codes for internationalization (i18n).
+> A blazing-fast, type-safe, zero-dependency, fully open-source way to validate, normalize, and resolve ISO-639-1/ISO-639-2/ISO-639-3, ISO-3166-1/ISO-3166-2, and BCP 47 codes for internationalization (i18n).
 
-## Why does this exist? Aren't there enough 'i18n' libs out there?
+### Why does this exist? Aren't there enough 'i18n' libs out there?
 
 Most i18n libraries expect you, or worse - your users, to know the "right" locale code. But what's valid?
 
@@ -19,7 +20,7 @@ You can either install a handful of packages to get this done, spin your own sol
 
 ---
 
-## Features
+### Features
 
 - **BCP 47 parsing** (`zh-Hant-HK` → `{ language, script, region }`)
 - **Alias matching** (`"english"` → `"en"`)
@@ -32,7 +33,7 @@ You can either install a handful of packages to get this done, spin your own sol
 
 ---
 
-## 🧠 Who this is for
+### Who this is for
 
 - Frontend devs using i18n libraries (React, Vue, Svelte, etc.)
 - CLI tool builders; in fact, it was created to solve this exact problem for [`ALIAS-Babel`](https://github.com/ALIAS-Research/alias-babel))
@@ -41,7 +42,7 @@ You can either install a handful of packages to get this done, spin your own sol
 
 ---
 
-## 📦 Installation
+### Installation
 
 ```bash
 # npm
@@ -57,8 +58,8 @@ bun add i18n-validator
 ```
 *** Deno Support Coming Soon ***
 
-## 🚀 Usage
-### Normalize a language name or ISO code
+### Usage
+**Normalize a language name or ISO code**
 
 ```typescript
 import { normalizeLanguage } from "i18n-validator";
@@ -71,7 +72,7 @@ normalizeLanguage("zh-hant");
 
 ```
 
-### Normalize a country/region code
+**Normalize a country/region code**
 ```typescript
 import { normalizeRegion } from "i18n-validator";
 
@@ -82,7 +83,7 @@ normalizeRegion("germany");
 // → { alpha2: 'DE', ... }
 ```
 
-### Parse a full BCP 47 tag
+**Parse a full BCP 47 tag**
 ```typescript
 import { parseBCP47 } from "i18n-validator";
 
@@ -93,7 +94,7 @@ parseBCP47("pt_br");
 // → { language: 'pt', region: 'BR', raw: 'pt_br' }
 ```
 
-### Validate a BCP 47 tag
+**Validate a BCP 47 tag**
 ```typescript
 import { validateBCP47 } from "i18n-validator";
 
@@ -102,28 +103,23 @@ validateBCP47("en_us"); // false
 validateBCP47("eng-XYZ"); // false
 ```
 
-## Modular Design
+### Modular Design
 All exports are tree-shakable:
 import { normalizeLanguage } from "i18n-validator/languages/normalize";
 import { normalizeRegion } from "i18n-validator/regions/normalize";
 import { parseBCP47 } from "i18n-validator/bcp47/parser";
 
-## Specs + Standards
+### Specs + Standards
 - ISO 639-1 / 639-2 / 639-3 (languages)
 - ISO 3166-1 alpha-2 / alpha-3 / numeric (regions)
 - BCP 47 language tags (incl. script subtags like Latn, Hant)
 - Unicode casing rules (zh-hant → zh-Hant)
 
-## Built for Quality
-✅ 100% test coverage with Vitest
-✅ Linted, formatted, and checked with BiomeJS
-✅ Written in modern TypeScript
-✅ Zero dependencies
 
-## Roadmap
+### Roadmap
 - VSCode / Zed / Cursor / Windsurf autocomplete plugins
 - Self-hosted `update` CLI command; the current APIs for building ISO/BCP lists are terrible (i18n-validator update)
 - Real-time i18n playground for web or CLI
 
-## ❤️ Built for [ALIAS-Babel](https://github.com/ALIAS-Research/alias-babel)
+### ❤️ Built for [ALIAS-Babel](https://github.com/ALIAS-Research/alias-babel)
 This library was created for ALIAS Babel, a CLI that automatically sets up your translations, wraps your code, and generates accurate dictionaries for any frontend framework.
