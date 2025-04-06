@@ -2,20 +2,28 @@
   "name": "i18n-validator",
   "version": "0.1.0",
   "description": "Lightweight i18n validation for language and region codes",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "node": "./dist/index.cjs"
+    }
+  },
   "type": "module",
   "scripts": {
     "build": "tsx scripts/build.ts",
     "update": "tsx src/update.ts",
     "test": "tsx tests/index.test.ts",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest watch",
+    "test:unit:ui": "vitest --ui",
     "lint": "biome lint",
     "format": "biome format --write",
     "check": "biome check",
     "check:fix": "biome check --write",
     "check:fix:all": "biome check --write --unsafe",
     "typecheck": "tsc --noEmit",
-    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "clean": "git clean -xdf .cache dist node_modules",
     "prepare": "husky"
   },
   "keywords": [
@@ -32,13 +40,15 @@
   ],
   "devDependencies": {
     "@types/node": "^22.14.0",
+    "@vitest/ui": "^3.1.1",
     "axios": "^1.8.4",
     "biome": "^0.3.3",
-    "esbuild": "^0.25.2",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.0",
+    "tsup": "^8.4.0",
     "tsx": "^4.19.3",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.1"
   },
   "lint-staged": {
     "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": [

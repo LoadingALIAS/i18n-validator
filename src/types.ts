@@ -1,19 +1,22 @@
-export interface Language {
+/** Core types: LanguageData, RegionData, NormalizedResult */
+export type LanguageData = {
   name: string;
-  iso6391: string;
-  iso6392: string;
-  iso6393: string;
-  regions: string[];
-}
+  native: string;
+  iso639_1: string;
+  iso639_2: string;
+  iso639_3: string;
+  bcp47: string;
+  region?: string;
+  script?: string;
+  aliases: string[];
+};
 
-export interface Country {
+export type RegionData = {
+  name: string;
   alpha2: string;
   alpha3: string;
   numeric: string;
-  currency: string;
-}
+  aliases: string[];
+};
 
-export interface Locale {
-  language: string;
-  region?: string;
-}
+export type NormalizedResult<T> = T | null;
