@@ -61,3 +61,6 @@ vitest-coverage/
 # Generated Types
 types/
 types.generated.ts
+
+# Cursor
+*.cursor

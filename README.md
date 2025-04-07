@@ -1,147 +1,220 @@
 # i18n-validator
 
-<p align="center">
-  <strong>The Valibot of i18n – type-safe, minimal, and blazingly fast.</strong>
-  <br />
-  <em>Finally, a single source of truth for language codes that just works™</em>
-</p>
+> A modern, type-safe validator for language codes, regions, and scripts - with full BCP 47 support.
 
-<p align="center">
-  <a href="https://npm.im/i18n-validator"><img src="https://img.shields.io/npm/v/i18n-validator" alt="npm version"></a>
-  <a href="https://npm.im/i18n-validator"><img src="https://img.shields.io/npm/dm/i18n-validator" alt="npm downloads"></a>
-  <a href="https://bundlephobia.com/package/i18n-validator"><img src="https://img.shields.io/bundlephobia/minzip/i18n-validator" alt="bundle size"></a>
-  <a href="https://github.com/your-username/i18n-validator/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/i18n-validator" alt="license"></a>
-</p>
+## Features
 
-## 🌟 Why i18n-validator?
+- 🌍 **Complete Coverage**: Supports ISO-639 (1/2/3), ISO-3166 (1/2), and ISO-15924 scripts
+- 🎯 **Type Safe**: Full TypeScript support with literal union types
+- 📦 **Tree-Shakable**: Import only what you need
+- ⚡ **Fast**: Built-in caching and optimized for performance
+- 🔍 **Smart Matching**: Fuzzy search and suggestions for near matches
+- 📝 **BCP 47 Compliant**: Full support for language-script-region tags
 
-Stop wrestling with language codes. Whether you're building a CLI tool, validating API inputs, or handling i18n in your frontend, you need reliable language code validation that:
-
-- ✅ **Just works** with any input (`"english"`, `"en"`, `"eng"`, `"en-US"`, `"en_us"`)
-- 🎯 **Always returns** the correct, normalized BCP 47 code
-- 💪 **Type-safe** with full TypeScript support
-- 🚀 **Tree-shakable** – only bundle what you use
-- 🔍 **Framework agnostic** – works everywhere
-
-```typescript
-import { validate } from 'i18n-validator';
-
-// All of these just work:
-validate('english');    // ✅ -> { code: 'en', ... }
-validate('eng-us');    // ✅ -> { code: 'en-US', ... }
-validate('zh_hant_hk'); // ✅ -> { code: 'zh-Hant-HK', ... }
-```
-
-## 🚀 Quick Start
+## Installation
 
 ```bash
-npm i i18n-validator   # npm
-pnpm add i18n-validator   # pnpm
-bun add i18n-validator    # bun
+npm install i18n-validator
 ```
 
-### Basic Usage
+## Usage Guide
+
+### Quick Start
 
 ```typescript
-import { normalize } from 'i18n-validator';
+import { defaultValidator } from 'i18n-validator';
 
-// Simple language normalization
-normalize('french');  // -> { code: 'fr', name: 'French', ... }
+// Simple validation
+const result = defaultValidator.validate('en-US');
+// { isValid: true, normalized: 'en-US' }
 
-// With regions
-normalize('canadian french');  // -> { code: 'fr-CA', ... }
+// Fuzzy matching
+const fuzzy = defaultValidator.validate('english_usa');
+// { 
+//   isValid: false, 
+//   normalized: 'en-US',
+//   suggestions: ['en-US', 'en-GB'],
+//   helpText: 'Did you mean: en-US?' 
+// }
 
-// Full BCP 47 support
-normalize('zh-hant-hk');  // -> { code: 'zh-Hant-HK', ... }
+// Script detection
+const chinese = defaultValidator.validate('zh-hk');
+// { isValid: true, normalized: 'zh-Hant-HK' }
 ```
 
-## 🎯 Perfect For
+### Custom Validator
 
-- **CLI Tools** – Handle user input gracefully
-  ```typescript
-  import { createPrompt } from 'i18n-validator/cli';
+Create a validator tailored to your needs:
 
-  const answer = await createPrompt()
-    .ask('Source language?')
-    .suggest(['en', 'fr', 'es']);
-  ```
-
-- **Frontend i18n** – Validate configs & user preferences
-  ```typescript
-  import { createValidator } from 'i18n-validator';
-
-  const validator = createValidator(['en', 'fr']);
-  validator.isValid('en-US'); // true
-  ```
-
-- **API Validation** – Ensure correct language codes
-  ```typescript
-  import { validateLanguage } from 'i18n-validator';
-
-  app.use((req, res, next) => {
-    const lang = validateLanguage(req.headers['accept-language']);
-    req.language = lang;
-    next();
-  });
-  ```
-
-## 💡 Features
-
-### Smart Validation
-- 🎯 Validates against ISO 639-1, 639-2, 639-3
-- 🌍 Full ISO 3166-1 region support
-- 📝 BCP 47 compliance with script subtags
-- 🔍 Fuzzy matching for human inputs
-
-### Developer Experience
-- 📦 Tree-shakable exports
-- 🔒 Full TypeScript support
-- 🚀 Zero dependencies
-- ⚡ Blazingly fast
-
-### Advanced Features
-- 🎮 CLI integration helpers
-- 🔄 Framework adapters
-- 🎨 Custom validation rules
-- 📊 Analytics & debugging tools
-
-## 📚 Documentation
-
-### Basic Validation
-```typescript
-import { validate } from 'i18n-validator';
-
-validate('english');     // ✅
-validate('eng-us');      // ✅
-validate('zh_hant_hk');  // ✅
-validate('not-a-lang');  // ❌
-```
-
-### Advanced Usage
 ```typescript
 import { createValidator } from 'i18n-validator';
 
-const validator = createValidator({
-  languages: ['en', 'fr'],
-  regions: ['US', 'CA'],
-  fuzzy: true
+// Builder pattern
+const validator = createValidator()
+  .withLanguages(['en', 'es', 'fr'])
+  .withRegions(['US', 'GB', 'ES'])
+  .withOptions({
+    mode: 'fuzzy',
+    suggestions: true,
+    cache: {
+      strategy: 'lru',
+      maxSize: 1000,
+      ttl: 3600000 // 1 hour
+    }
+  });
+
+// Or configuration object
+const validator2 = createValidator({
+  languages: ['en', 'es', 'fr'],
+  regions: ['US', 'GB', 'ES'],
+  options: {
+    mode: 'strict',
+    type: 'bcp47'
+  }
 });
-
-validator.validate('canadian french');
-// -> { code: 'fr-CA', confidence: 0.95 }
 ```
 
-## 🛠 Contributing
+### Dynamic Data Loading
 
-We love contributions! See our [Contributing Guide](CONTRIBUTING.md) for details.
+Load only the data you need, when you need it:
 
-## 📜 License
+```typescript
+import { loadLanguages, loadGroup, preloadGroup } from 'i18n-validator';
 
-MIT © [Your Name]
+// Load specific languages
+const languages = await loadLanguages(['en', 'es', 'fr']);
 
----
+// Load pre-defined groups
+const european = await loadGroup('european');
+const asian = await loadGroup('asian');
 
-<p align="center">
-  Built with ❤️ for the i18n community
-</p>
+// Preload group with data
+const cyrillicData = await preloadGroup('cyrillic');
 ```
+
+### Web Applications
+
+Perfect for language selectors and i18n configuration:
+
+```typescript
+import { createValidator } from 'i18n-validator';
+import { loadGroup } from 'i18n-validator';
+
+// React language selector example
+async function LanguageSelector({ onChange }) {
+  const europeanLangs = await loadGroup('european');
+  const validator = createValidator()
+    .withLanguages(europeanLangs)
+    .withOptions({ mode: 'fuzzy' });
+
+  return (
+    <select onChange={(e) => {
+      const result = validator.validate(e.target.value);
+      if (result.isValid) onChange(result.normalized);
+    }}>
+      {europeanLangs.map(lang => (
+        <option key={lang} value={lang}>{lang}</option>
+      ))}
+    </select>
+  );
+}
+```
+
+### Backend Validation
+
+Robust API and database validation:
+
+```typescript
+import { createValidator } from 'i18n-validator';
+
+// Create a validator for your API
+const validator = createValidator()
+  .withOptions({
+    mode: 'strict',
+    type: 'bcp47',
+    suggestions: true
+  });
+
+// Express middleware example
+function validateLocale(req, res, next) {
+  const result = validator.validate(req.headers['accept-language']);
+  
+  if (!result.isValid) {
+    return res.status(400).json({
+      error: 'Invalid locale',
+      suggestions: result.suggestions
+    });
+  }
+  
+  req.locale = result.normalized;
+  next();
+}
+```
+
+### Error Handling
+
+Comprehensive error handling with specific error types:
+
+```typescript
+import { createValidator, I18nValidationError } from 'i18n-validator';
+
+try {
+  const validator = createValidator()
+    .withLanguages(['en', 'fr'])
+    .withOptions({ mode: 'strict' });
+    
+  const result = validator.validate('invalid');
+} catch (error) {
+  if (error instanceof I18nValidationError) {
+    console.error('Validation error:', error.message);
+    // Access additional error data
+    console.log('Code:', error.code);
+  }
+}
+```
+
+### Bundle Size Optimization
+
+The library is fully tree-shakeable. Here's how to keep your bundle size minimal:
+
+1. **Use the Default Validator for Simple Cases**:
+
+   ```typescript
+   // ✅ Good - minimal import
+   import { defaultValidator } from 'i18n-validator';
+   ```
+
+2. **Create Custom Validators for Specific Needs**:
+
+   ```typescript
+   // ✅ Good - only what you need
+   import { createValidator } from 'i18n-validator';
+   const validator = createValidator()
+     .withLanguages(['en', 'es']);
+   ```
+
+3. **Dynamic Imports for Large Groups**:
+
+   ```typescript
+   // ✅ Best - load on demand
+   const { europeanLanguages } = await import('i18n-validator/groups/common');
+   ```
+
+## Updating Language Data
+
+Keep your language data up-to-date with official sources:
+
+```bash
+npm run update
+```
+
+This will fetch the latest data from:
+
+- IANA Language Subtag Registry
+- ISO 639-1/2/3 Language Codes
+- ISO 3166-1/2 Region Codes
+- ISO 15924 Script Codes
+
+## License
+
+MIT

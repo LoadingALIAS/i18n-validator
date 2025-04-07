@@ -12,7 +12,7 @@
   "type": "module",
   "scripts": {
     "build": "tsx scripts/build.ts",
-    "update": "tsx src/update.ts",
+    "update": "tsx scripts/generate-data.ts",
     "test": "tsx tests/index.test.ts",
     "test:unit": "vitest run tests/unit-tests",
     "test:unit:watch": "vitest watch tests/unit-tests",
