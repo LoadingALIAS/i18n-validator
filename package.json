@@ -36,7 +36,9 @@
     "validation",
     "language",
     "bcp47",
-    "iso639"
+    "iso639",
+    "iso15924",
+    "iso3166"
   ],
   "author": "LoadingALIAS",
   "license": "MIT",
