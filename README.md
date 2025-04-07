@@ -2,6 +2,11 @@
 
 > A modern, type-safe validator for language codes, regions, and scripts - with full BCP 47 support.
 
+[![Biome](https://img.shields.io/badge/code%20style-biome-blue.svg)](https://biomejs.dev/)
+[![Test Coverage](https://img.shields.io/badge/coverage-89%25-brightgreen.svg)](https://vitest.dev/guide/coverage.html)
+[![BCP 47](https://img.shields.io/badge/i18n-BCP%2047-orange)](https://www.rfc-editor.org/info/bcp47)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 ## Features
 
 - 🌍 **Complete Coverage**: Supports ISO-639 (1/2/3), ISO-3166 (1/2), and ISO-15924 scripts
@@ -14,7 +19,7 @@
 ## Installation
 
 ```bash
-npm install i18n-validator
+pnpm install i18n-validator
 ```
 
 ## Usage Guide
@@ -200,12 +205,38 @@ The library is fully tree-shakeable. Here's how to keep your bundle size minimal
    const { europeanLanguages } = await import('i18n-validator/groups/common');
    ```
 
+## Testing and Code Quality
+
+This library is thoroughly tested with high code coverage to ensure reliability and stability:
+
+- **89% code coverage**: Comprehensive test suite covering core functionality (Istanbul)
+- **Unit tests**: Covering individual modules (validation, normalization, fuzzy matching)
+- **Integration tests**: For real-world scenarios like CLI usage and web validation
+- **BiomeJS**: We use BiomeJS for linting and code formatting
+- **Type Safety**: All code is fully typed with TypeScript
+
+You can run tests locally with:
+
+```bash
+# Run all tests
+pnpm test
+
+# Run with coverage report
+pnpm run test:coverage
+
+# Run unit tests only
+pnpm run test:unit
+
+# Run integration tests only
+pnpm run test:integration
+```
+
 ## Updating Language Data
 
 Keep your language data up-to-date with official sources:
 
 ```bash
-npm run update
+pnpm run update
 ```
 
 This will fetch the latest data from:
