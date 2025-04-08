@@ -1,0 +1,1619 @@
+{
+  "Adlm": {
+    "name": "Adlam",
+    "code": "Adlm",
+    "aliases": [
+      "adlam"
+    ]
+  },
+  "Afak": {
+    "name": "Afaka",
+    "code": "Afak",
+    "aliases": [
+      "afaka"
+    ]
+  },
+  "Aghb": {
+    "name": "Caucasian Albanian",
+    "code": "Aghb",
+    "aliases": [
+      "caucasian albanian"
+    ]
+  },
+  "Ahom": {
+    "name": "Ahom",
+    "code": "Ahom",
+    "aliases": [
+      "ahom",
+      "tai ahom"
+    ]
+  },
+  "Arab": {
+    "name": "Arabic",
+    "code": "Arab",
+    "aliases": [
+      "arabic"
+    ]
+  },
+  "Aran": {
+    "name": "Arabic (Nastaliq variant)",
+    "code": "Aran",
+    "aliases": [
+      "arabic (nastaliq variant)"
+    ]
+  },
+  "Armi": {
+    "name": "Imperial Aramaic",
+    "code": "Armi",
+    "aliases": [
+      "imperial aramaic"
+    ]
+  },
+  "Armn": {
+    "name": "Armenian",
+    "code": "Armn",
+    "aliases": [
+      "armenian"
+    ]
+  },
+  "Avst": {
+    "name": "Avestan",
+    "code": "Avst",
+    "aliases": [
+      "avestan"
+    ]
+  },
+  "Bali": {
+    "name": "Balinese",
+    "code": "Bali",
+    "aliases": [
+      "balinese"
+    ]
+  },
+  "Bamu": {
+    "name": "Bamum",
+    "code": "Bamu",
+    "aliases": [
+      "bamum"
+    ]
+  },
+  "Bass": {
+    "name": "Bassa Vah",
+    "code": "Bass",
+    "aliases": [
+      "bassa vah"
+    ]
+  },
+  "Batk": {
+    "name": "Batak",
+    "code": "Batk",
+    "aliases": [
+      "batak"
+    ]
+  },
+  "Beng": {
+    "name": "Bengali",
+    "code": "Beng",
+    "aliases": [
+      "bengali",
+      "bangla"
+    ]
+  },
+  "Berf": {
+    "name": "Beria Erfe",
+    "code": "Berf",
+    "aliases": [
+      "beria erfe"
+    ]
+  },
+  "Bhks": {
+    "name": "Bhaiksuki",
+    "code": "Bhks",
+    "aliases": [
+      "bhaiksuki"
+    ]
+  },
+  "Blis": {
+    "name": "Blissymbols",
+    "code": "Blis",
+    "aliases": [
+      "blissymbols"
+    ]
+  },
+  "Bopo": {
+    "name": "Bopomofo",
+    "code": "Bopo",
+    "aliases": [
+      "bopomofo"
+    ]
+  },
+  "Brah": {
+    "name": "Brahmi",
+    "code": "Brah",
+    "aliases": [
+      "brahmi"
+    ]
+  },
+  "Brai": {
+    "name": "Braille",
+    "code": "Brai",
+    "aliases": [
+      "braille"
+    ]
+  },
+  "Bugi": {
+    "name": "Buginese",
+    "code": "Bugi",
+    "aliases": [
+      "buginese"
+    ]
+  },
+  "Buhd": {
+    "name": "Buhid",
+    "code": "Buhd",
+    "aliases": [
+      "buhid"
+    ]
+  },
+  "Cakm": {
+    "name": "Chakma",
+    "code": "Cakm",
+    "aliases": [
+      "chakma"
+    ]
+  },
+  "Cans": {
+    "name": "Unified Canadian Aboriginal Syllabics",
+    "code": "Cans",
+    "aliases": [
+      "unified canadian aboriginal syllabics"
+    ]
+  },
+  "Cari": {
+    "name": "Carian",
+    "code": "Cari",
+    "aliases": [
+      "carian"
+    ]
+  },
+  "Cham": {
+    "name": "Cham",
+    "code": "Cham",
+    "aliases": [
+      "cham"
+    ]
+  },
+  "Cher": {
+    "name": "Cherokee",
+    "code": "Cher",
+    "aliases": [
+      "cherokee"
+    ]
+  },
+  "Chis": {
+    "name": "Chisoi",
+    "code": "Chis",
+    "aliases": [
+      "chisoi"
+    ]
+  },
+  "Chrs": {
+    "name": "Chorasmian",
+    "code": "Chrs",
+    "aliases": [
+      "chorasmian"
+    ]
+  },
+  "Cirt": {
+    "name": "Cirth",
+    "code": "Cirt",
+    "aliases": [
+      "cirth"
+    ]
+  },
+  "Copt": {
+    "name": "Coptic",
+    "code": "Copt",
+    "aliases": [
+      "coptic"
+    ]
+  },
+  "Cpmn": {
+    "name": "Cypro-Minoan",
+    "code": "Cpmn",
+    "aliases": [
+      "cypro-minoan"
+    ]
+  },
+  "Cprt": {
+    "name": "Cypriot syllabary",
+    "code": "Cprt",
+    "aliases": [
+      "cypriot syllabary"
+    ]
+  },
+  "Cyrl": {
+    "name": "Cyrillic",
+    "code": "Cyrl",
+    "aliases": [
+      "cyrillic"
+    ]
+  },
+  "Cyrs": {
+    "name": "Cyrillic (Old Church Slavonic variant)",
+    "code": "Cyrs",
+    "aliases": [
+      "cyrillic (old church slavonic variant)"
+    ]
+  },
+  "Deva": {
+    "name": "Devanagari",
+    "code": "Deva",
+    "aliases": [
+      "devanagari",
+      "nagari"
+    ]
+  },
+  "Diak": {
+    "name": "Dives Akuru",
+    "code": "Diak",
+    "aliases": [
+      "dives akuru"
+    ]
+  },
+  "Dogr": {
+    "name": "Dogra",
+    "code": "Dogr",
+    "aliases": [
+      "dogra"
+    ]
+  },
+  "Dsrt": {
+    "name": "Deseret",
+    "code": "Dsrt",
+    "aliases": [
+      "deseret",
+      "mormon"
+    ]
+  },
+  "Dupl": {
+    "name": "Duployan shorthand",
+    "code": "Dupl",
+    "aliases": [
+      "duployan shorthand",
+      "duployan stenography"
+    ]
+  },
+  "Egyd": {
+    "name": "Egyptian demotic",
+    "code": "Egyd",
+    "aliases": [
+      "egyptian demotic"
+    ]
+  },
+  "Egyh": {
+    "name": "Egyptian hieratic",
+    "code": "Egyh",
+    "aliases": [
+      "egyptian hieratic"
+    ]
+  },
+  "Egyp": {
+    "name": "Egyptian hieroglyphs",
+    "code": "Egyp",
+    "aliases": [
+      "egyptian hieroglyphs"
+    ]
+  },
+  "Elba": {
+    "name": "Elbasan",
+    "code": "Elba",
+    "aliases": [
+      "elbasan"
+    ]
+  },
+  "Elym": {
+    "name": "Elymaic",
+    "code": "Elym",
+    "aliases": [
+      "elymaic"
+    ]
+  },
+  "Ethi": {
+    "name": "Ethiopic",
+    "code": "Ethi",
+    "aliases": [
+      "ethiopic",
+      "geʻez",
+      "ge'ez"
+    ]
+  },
+  "Gara": {
+    "name": "Garay",
+    "code": "Gara",
+    "aliases": [
+      "garay"
+    ]
+  },
+  "Geok": {
+    "name": "Khutsuri (Asomtavruli and Nuskhuri)",
+    "code": "Geok",
+    "aliases": [
+      "khutsuri (asomtavruli and nuskhuri)"
+    ]
+  },
+  "Geor": {
+    "name": "Georgian (Mkhedruli and Mtavruli)",
+    "code": "Geor",
+    "aliases": [
+      "georgian (mkhedruli and mtavruli)"
+    ]
+  },
+  "Glag": {
+    "name": "Glagolitic",
+    "code": "Glag",
+    "aliases": [
+      "glagolitic"
+    ]
+  },
+  "Gong": {
+    "name": "Gunjala Gondi",
+    "code": "Gong",
+    "aliases": [
+      "gunjala gondi"
+    ]
+  },
+  "Gonm": {
+    "name": "Masaram Gondi",
+    "code": "Gonm",
+    "aliases": [
+      "masaram gondi"
+    ]
+  },
+  "Goth": {
+    "name": "Gothic",
+    "code": "Goth",
+    "aliases": [
+      "gothic"
+    ]
+  },
+  "Gran": {
+    "name": "Grantha",
+    "code": "Gran",
+    "aliases": [
+      "grantha"
+    ]
+  },
+  "Grek": {
+    "name": "Greek",
+    "code": "Grek",
+    "aliases": [
+      "greek"
+    ]
+  },
+  "Gujr": {
+    "name": "Gujarati",
+    "code": "Gujr",
+    "aliases": [
+      "gujarati"
+    ]
+  },
+  "Gukh": {
+    "name": "Gurung Khema",
+    "code": "Gukh",
+    "aliases": [
+      "gurung khema"
+    ]
+  },
+  "Guru": {
+    "name": "Gurmukhi",
+    "code": "Guru",
+    "aliases": [
+      "gurmukhi"
+    ]
+  },
+  "Hanb": {
+    "name": "Han with Bopomofo (alias for Han + Bopomofo)",
+    "code": "Hanb",
+    "aliases": [
+      "han with bopomofo (alias for han + bopomofo)"
+    ]
+  },
+  "Hang": {
+    "name": "Hangul",
+    "code": "Hang",
+    "aliases": [
+      "hangul",
+      "hangŭl",
+      "hangeul"
+    ]
+  },
+  "Hani": {
+    "name": "Han",
+    "code": "Hani",
+    "aliases": [
+      "han",
+      "hanzi",
+      "kanji",
+      "hanja"
+    ]
+  },
+  "Hano": {
+    "name": "Hanunoo",
+    "code": "Hano",
+    "aliases": [
+      "hanunoo",
+      "hanunóo"
+    ]
+  },
+  "Hans": {
+    "name": "Han (Simplified variant)",
+    "code": "Hans",
+    "aliases": [
+      "han (simplified variant)"
+    ]
+  },
+  "Hant": {
+    "name": "Han (Traditional variant)",
+    "code": "Hant",
+    "aliases": [
+      "han (traditional variant)"
+    ]
+  },
+  "Hatr": {
+    "name": "Hatran",
+    "code": "Hatr",
+    "aliases": [
+      "hatran"
+    ]
+  },
+  "Hebr": {
+    "name": "Hebrew",
+    "code": "Hebr",
+    "aliases": [
+      "hebrew"
+    ]
+  },
+  "Hira": {
+    "name": "Hiragana",
+    "code": "Hira",
+    "aliases": [
+      "hiragana"
+    ]
+  },
+  "Hluw": {
+    "name": "Anatolian Hieroglyphs",
+    "code": "Hluw",
+    "aliases": [
+      "anatolian hieroglyphs",
+      "luwian hieroglyphs",
+      "hittite hieroglyphs"
+    ]
+  },
+  "Hmng": {
+    "name": "Pahawh Hmong",
+    "code": "Hmng",
+    "aliases": [
+      "pahawh hmong"
+    ]
+  },
+  "Hmnp": {
+    "name": "Nyiakeng Puachue Hmong",
+    "code": "Hmnp",
+    "aliases": [
+      "nyiakeng puachue hmong"
+    ]
+  },
+  "Hrkt": {
+    "name": "Japanese syllabaries (alias for Hiragana + Katakana)",
+    "code": "Hrkt",
+    "aliases": [
+      "japanese syllabaries (alias for hiragana + katakana)"
+    ]
+  },
+  "Hung": {
+    "name": "Old Hungarian",
+    "code": "Hung",
+    "aliases": [
+      "old hungarian",
+      "hungarian runic"
+    ]
+  },
+  "Inds": {
+    "name": "Indus",
+    "code": "Inds",
+    "aliases": [
+      "indus",
+      "harappan"
+    ]
+  },
+  "Ital": {
+    "name": "Old Italic (Etruscan, Oscan, etc.)",
+    "code": "Ital",
+    "aliases": [
+      "old italic (etruscan, oscan, etc.)"
+    ]
+  },
+  "Jamo": {
+    "name": "Jamo (alias for Jamo subset of Hangul)",
+    "code": "Jamo",
+    "aliases": [
+      "jamo (alias for jamo subset of hangul)"
+    ]
+  },
+  "Java": {
+    "name": "Javanese",
+    "code": "Java",
+    "aliases": [
+      "javanese"
+    ]
+  },
+  "Jpan": {
+    "name": "Japanese (alias for Han + Hiragana + Katakana)",
+    "code": "Jpan",
+    "aliases": [
+      "japanese (alias for han + hiragana + katakana)"
+    ]
+  },
+  "Jurc": {
+    "name": "Jurchen",
+    "code": "Jurc",
+    "aliases": [
+      "jurchen"
+    ]
+  },
+  "Kali": {
+    "name": "Kayah Li",
+    "code": "Kali",
+    "aliases": [
+      "kayah li"
+    ]
+  },
+  "Kana": {
+    "name": "Katakana",
+    "code": "Kana",
+    "aliases": [
+      "katakana"
+    ]
+  },
+  "Kawi": {
+    "name": "Kawi",
+    "code": "Kawi",
+    "aliases": [
+      "kawi"
+    ]
+  },
+  "Khar": {
+    "name": "Kharoshthi",
+    "code": "Khar",
+    "aliases": [
+      "kharoshthi"
+    ]
+  },
+  "Khmr": {
+    "name": "Khmer",
+    "code": "Khmr",
+    "aliases": [
+      "khmer"
+    ]
+  },
+  "Khoj": {
+    "name": "Khojki",
+    "code": "Khoj",
+    "aliases": [
+      "khojki"
+    ]
+  },
+  "Kitl": {
+    "name": "Khitan large script",
+    "code": "Kitl",
+    "aliases": [
+      "khitan large script"
+    ]
+  },
+  "Kits": {
+    "name": "Khitan small script",
+    "code": "Kits",
+    "aliases": [
+      "khitan small script"
+    ]
+  },
+  "Knda": {
+    "name": "Kannada",
+    "code": "Knda",
+    "aliases": [
+      "kannada"
+    ]
+  },
+  "Kore": {
+    "name": "Korean (alias for Hangul + Han)",
+    "code": "Kore",
+    "aliases": [
+      "korean (alias for hangul + han)"
+    ]
+  },
+  "Kpel": {
+    "name": "Kpelle",
+    "code": "Kpel",
+    "aliases": [
+      "kpelle"
+    ]
+  },
+  "Krai": {
+    "name": "Kirat Rai",
+    "code": "Krai",
+    "aliases": [
+      "kirat rai"
+    ]
+  },
+  "Kthi": {
+    "name": "Kaithi",
+    "code": "Kthi",
+    "aliases": [
+      "kaithi"
+    ]
+  },
+  "Lana": {
+    "name": "Tai Tham",
+    "code": "Lana",
+    "aliases": [
+      "tai tham",
+      "lanna"
+    ]
+  },
+  "Laoo": {
+    "name": "Lao",
+    "code": "Laoo",
+    "aliases": [
+      "lao"
+    ]
+  },
+  "Latf": {
+    "name": "Latin (Fraktur variant)",
+    "code": "Latf",
+    "aliases": [
+      "latin (fraktur variant)"
+    ]
+  },
+  "Latg": {
+    "name": "Latin (Gaelic variant)",
+    "code": "Latg",
+    "aliases": [
+      "latin (gaelic variant)"
+    ]
+  },
+  "Latn": {
+    "name": "Latin",
+    "code": "Latn",
+    "aliases": [
+      "latin"
+    ]
+  },
+  "Leke": {
+    "name": "Leke",
+    "code": "Leke",
+    "aliases": [
+      "leke"
+    ]
+  },
+  "Lepc": {
+    "name": "Lepcha",
+    "code": "Lepc",
+    "aliases": [
+      "lepcha",
+      "róng"
+    ]
+  },
+  "Limb": {
+    "name": "Limbu",
+    "code": "Limb",
+    "aliases": [
+      "limbu"
+    ]
+  },
+  "Lina": {
+    "name": "Linear A",
+    "code": "Lina",
+    "aliases": [
+      "linear a"
+    ]
+  },
+  "Linb": {
+    "name": "Linear B",
+    "code": "Linb",
+    "aliases": [
+      "linear b"
+    ]
+  },
+  "Lisu": {
+    "name": "Lisu",
+    "code": "Lisu",
+    "aliases": [
+      "lisu",
+      "fraser"
+    ]
+  },
+  "Loma": {
+    "name": "Loma",
+    "code": "Loma",
+    "aliases": [
+      "loma"
+    ]
+  },
+  "Lyci": {
+    "name": "Lycian",
+    "code": "Lyci",
+    "aliases": [
+      "lycian"
+    ]
+  },
+  "Lydi": {
+    "name": "Lydian",
+    "code": "Lydi",
+    "aliases": [
+      "lydian"
+    ]
+  },
+  "Mahj": {
+    "name": "Mahajani",
+    "code": "Mahj",
+    "aliases": [
+      "mahajani"
+    ]
+  },
+  "Maka": {
+    "name": "Makasar",
+    "code": "Maka",
+    "aliases": [
+      "makasar"
+    ]
+  },
+  "Mand": {
+    "name": "Mandaic",
+    "code": "Mand",
+    "aliases": [
+      "mandaic",
+      "mandaean"
+    ]
+  },
+  "Mani": {
+    "name": "Manichaean",
+    "code": "Mani",
+    "aliases": [
+      "manichaean"
+    ]
+  },
+  "Marc": {
+    "name": "Marchen",
+    "code": "Marc",
+    "aliases": [
+      "marchen"
+    ]
+  },
+  "Maya": {
+    "name": "Mayan hieroglyphs",
+    "code": "Maya",
+    "aliases": [
+      "mayan hieroglyphs"
+    ]
+  },
+  "Medf": {
+    "name": "Medefaidrin",
+    "code": "Medf",
+    "aliases": [
+      "medefaidrin",
+      "oberi okaime",
+      "oberi ɔkaimɛ"
+    ]
+  },
+  "Mend": {
+    "name": "Mende Kikakui",
+    "code": "Mend",
+    "aliases": [
+      "mende kikakui"
+    ]
+  },
+  "Merc": {
+    "name": "Meroitic Cursive",
+    "code": "Merc",
+    "aliases": [
+      "meroitic cursive"
+    ]
+  },
+  "Mero": {
+    "name": "Meroitic Hieroglyphs",
+    "code": "Mero",
+    "aliases": [
+      "meroitic hieroglyphs"
+    ]
+  },
+  "Mlym": {
+    "name": "Malayalam",
+    "code": "Mlym",
+    "aliases": [
+      "malayalam"
+    ]
+  },
+  "Modi": {
+    "name": "Modi",
+    "code": "Modi",
+    "aliases": [
+      "modi",
+      "moḍī"
+    ]
+  },
+  "Mong": {
+    "name": "Mongolian",
+    "code": "Mong",
+    "aliases": [
+      "mongolian"
+    ]
+  },
+  "Moon": {
+    "name": "Moon",
+    "code": "Moon",
+    "aliases": [
+      "moon",
+      "moon code",
+      "moon script",
+      "moon type"
+    ]
+  },
+  "Mroo": {
+    "name": "Mro",
+    "code": "Mroo",
+    "aliases": [
+      "mro",
+      "mru"
+    ]
+  },
+  "Mtei": {
+    "name": "Meitei Mayek",
+    "code": "Mtei",
+    "aliases": [
+      "meitei mayek",
+      "meithei",
+      "meetei"
+    ]
+  },
+  "Mult": {
+    "name": "Multani",
+    "code": "Mult",
+    "aliases": [
+      "multani"
+    ]
+  },
+  "Mymr": {
+    "name": "Myanmar",
+    "code": "Mymr",
+    "aliases": [
+      "myanmar",
+      "burmese"
+    ]
+  },
+  "Nagm": {
+    "name": "Nag Mundari",
+    "code": "Nagm",
+    "aliases": [
+      "nag mundari"
+    ]
+  },
+  "Nand": {
+    "name": "Nandinagari",
+    "code": "Nand",
+    "aliases": [
+      "nandinagari"
+    ]
+  },
+  "Narb": {
+    "name": "Old North Arabian",
+    "code": "Narb",
+    "aliases": [
+      "old north arabian",
+      "ancient north arabian"
+    ]
+  },
+  "Nbat": {
+    "name": "Nabataean",
+    "code": "Nbat",
+    "aliases": [
+      "nabataean"
+    ]
+  },
+  "Newa": {
+    "name": "Newa",
+    "code": "Newa",
+    "aliases": [
+      "newa",
+      "newar",
+      "newari",
+      "nepāla lipi"
+    ]
+  },
+  "Nkdb": {
+    "name": "Naxi Dongba",
+    "code": "Nkdb",
+    "aliases": [
+      "naxi dongba",
+      "na²¹ɕi³³ to³³ba²¹",
+      "nakhi tomba"
+    ]
+  },
+  "Nkgb": {
+    "name": "Naxi Geba",
+    "code": "Nkgb",
+    "aliases": [
+      "naxi geba",
+      "na²¹ɕi³³ gʌ²¹ba²¹",
+      "'na-'khi ²ggŏ-¹baw",
+      "nakhi geba"
+    ]
+  },
+  "Nkoo": {
+    "name": "N’Ko",
+    "code": "Nkoo",
+    "aliases": [
+      "n’ko",
+      "n'ko"
+    ]
+  },
+  "Nshu": {
+    "name": "Nüshu",
+    "code": "Nshu",
+    "aliases": [
+      "nüshu"
+    ]
+  },
+  "Ogam": {
+    "name": "Ogham",
+    "code": "Ogam",
+    "aliases": [
+      "ogham"
+    ]
+  },
+  "Olck": {
+    "name": "Ol Chiki",
+    "code": "Olck",
+    "aliases": [
+      "ol chiki",
+      "ol cemet'",
+      "ol",
+      "santali"
+    ]
+  },
+  "Onao": {
+    "name": "Ol Onal",
+    "code": "Onao",
+    "aliases": [
+      "ol onal"
+    ]
+  },
+  "Orkh": {
+    "name": "Old Turkic",
+    "code": "Orkh",
+    "aliases": [
+      "old turkic",
+      "orkhon runic"
+    ]
+  },
+  "Orya": {
+    "name": "Oriya",
+    "code": "Orya",
+    "aliases": [
+      "oriya",
+      "odia"
+    ]
+  },
+  "Osge": {
+    "name": "Osage",
+    "code": "Osge",
+    "aliases": [
+      "osage"
+    ]
+  },
+  "Osma": {
+    "name": "Osmanya",
+    "code": "Osma",
+    "aliases": [
+      "osmanya"
+    ]
+  },
+  "Ougr": {
+    "name": "Old Uyghur",
+    "code": "Ougr",
+    "aliases": [
+      "old uyghur"
+    ]
+  },
+  "Palm": {
+    "name": "Palmyrene",
+    "code": "Palm",
+    "aliases": [
+      "palmyrene"
+    ]
+  },
+  "Pauc": {
+    "name": "Pau Cin Hau",
+    "code": "Pauc",
+    "aliases": [
+      "pau cin hau"
+    ]
+  },
+  "Pcun": {
+    "name": "Proto-Cuneiform",
+    "code": "Pcun",
+    "aliases": [
+      "proto-cuneiform"
+    ]
+  },
+  "Pelm": {
+    "name": "Proto-Elamite",
+    "code": "Pelm",
+    "aliases": [
+      "proto-elamite"
+    ]
+  },
+  "Perm": {
+    "name": "Old Permic",
+    "code": "Perm",
+    "aliases": [
+      "old permic"
+    ]
+  },
+  "Phag": {
+    "name": "Phags-pa",
+    "code": "Phag",
+    "aliases": [
+      "phags-pa"
+    ]
+  },
+  "Phli": {
+    "name": "Inscriptional Pahlavi",
+    "code": "Phli",
+    "aliases": [
+      "inscriptional pahlavi"
+    ]
+  },
+  "Phlp": {
+    "name": "Psalter Pahlavi",
+    "code": "Phlp",
+    "aliases": [
+      "psalter pahlavi"
+    ]
+  },
+  "Phlv": {
+    "name": "Book Pahlavi",
+    "code": "Phlv",
+    "aliases": [
+      "book pahlavi"
+    ]
+  },
+  "Phnx": {
+    "name": "Phoenician",
+    "code": "Phnx",
+    "aliases": [
+      "phoenician"
+    ]
+  },
+  "Piqd": {
+    "name": "Klingon (KLI pIqaD)",
+    "code": "Piqd",
+    "aliases": [
+      "klingon (kli piqad)"
+    ]
+  },
+  "Plrd": {
+    "name": "Miao",
+    "code": "Plrd",
+    "aliases": [
+      "miao",
+      "pollard"
+    ]
+  },
+  "Prti": {
+    "name": "Inscriptional Parthian",
+    "code": "Prti",
+    "aliases": [
+      "inscriptional parthian"
+    ]
+  },
+  "Psin": {
+    "name": "Proto-Sinaitic",
+    "code": "Psin",
+    "aliases": [
+      "proto-sinaitic"
+    ]
+  },
+  "Ranj": {
+    "name": "Ranjana",
+    "code": "Ranj",
+    "aliases": [
+      "ranjana"
+    ]
+  },
+  "Rjng": {
+    "name": "Rejang",
+    "code": "Rjng",
+    "aliases": [
+      "rejang",
+      "redjang",
+      "kaganga"
+    ]
+  },
+  "Rohg": {
+    "name": "Hanifi Rohingya",
+    "code": "Rohg",
+    "aliases": [
+      "hanifi rohingya"
+    ]
+  },
+  "Roro": {
+    "name": "Rongorongo",
+    "code": "Roro",
+    "aliases": [
+      "rongorongo"
+    ]
+  },
+  "Runr": {
+    "name": "Runic",
+    "code": "Runr",
+    "aliases": [
+      "runic"
+    ]
+  },
+  "Samr": {
+    "name": "Samaritan",
+    "code": "Samr",
+    "aliases": [
+      "samaritan"
+    ]
+  },
+  "Sara": {
+    "name": "Sarati",
+    "code": "Sara",
+    "aliases": [
+      "sarati"
+    ]
+  },
+  "Sarb": {
+    "name": "Old South Arabian",
+    "code": "Sarb",
+    "aliases": [
+      "old south arabian"
+    ]
+  },
+  "Saur": {
+    "name": "Saurashtra",
+    "code": "Saur",
+    "aliases": [
+      "saurashtra"
+    ]
+  },
+  "Sgnw": {
+    "name": "SignWriting",
+    "code": "Sgnw",
+    "aliases": [
+      "signwriting"
+    ]
+  },
+  "Shaw": {
+    "name": "Shavian",
+    "code": "Shaw",
+    "aliases": [
+      "shavian",
+      "shaw"
+    ]
+  },
+  "Shrd": {
+    "name": "Sharada",
+    "code": "Shrd",
+    "aliases": [
+      "sharada",
+      "śāradā"
+    ]
+  },
+  "Shui": {
+    "name": "Shuishu",
+    "code": "Shui",
+    "aliases": [
+      "shuishu"
+    ]
+  },
+  "Sidd": {
+    "name": "Siddham",
+    "code": "Sidd",
+    "aliases": [
+      "siddham",
+      "siddhaṃ",
+      "siddhamātṛkā"
+    ]
+  },
+  "Sidt": {
+    "name": "Sidetic",
+    "code": "Sidt",
+    "aliases": [
+      "sidetic"
+    ]
+  },
+  "Sind": {
+    "name": "Khudawadi",
+    "code": "Sind",
+    "aliases": [
+      "khudawadi",
+      "sindhi"
+    ]
+  },
+  "Sinh": {
+    "name": "Sinhala",
+    "code": "Sinh",
+    "aliases": [
+      "sinhala"
+    ]
+  },
+  "Sogd": {
+    "name": "Sogdian",
+    "code": "Sogd",
+    "aliases": [
+      "sogdian"
+    ]
+  },
+  "Sogo": {
+    "name": "Old Sogdian",
+    "code": "Sogo",
+    "aliases": [
+      "old sogdian"
+    ]
+  },
+  "Sora": {
+    "name": "Sora Sompeng",
+    "code": "Sora",
+    "aliases": [
+      "sora sompeng"
+    ]
+  },
+  "Soyo": {
+    "name": "Soyombo",
+    "code": "Soyo",
+    "aliases": [
+      "soyombo"
+    ]
+  },
+  "Sund": {
+    "name": "Sundanese",
+    "code": "Sund",
+    "aliases": [
+      "sundanese"
+    ]
+  },
+  "Sunu": {
+    "name": "Sunuwar",
+    "code": "Sunu",
+    "aliases": [
+      "sunuwar"
+    ]
+  },
+  "Sylo": {
+    "name": "Syloti Nagri",
+    "code": "Sylo",
+    "aliases": [
+      "syloti nagri"
+    ]
+  },
+  "Syrc": {
+    "name": "Syriac",
+    "code": "Syrc",
+    "aliases": [
+      "syriac"
+    ]
+  },
+  "Syre": {
+    "name": "Syriac (Estrangelo variant)",
+    "code": "Syre",
+    "aliases": [
+      "syriac (estrangelo variant)"
+    ]
+  },
+  "Syrj": {
+    "name": "Syriac (Western variant)",
+    "code": "Syrj",
+    "aliases": [
+      "syriac (western variant)"
+    ]
+  },
+  "Syrn": {
+    "name": "Syriac (Eastern variant)",
+    "code": "Syrn",
+    "aliases": [
+      "syriac (eastern variant)"
+    ]
+  },
+  "Tagb": {
+    "name": "Tagbanwa",
+    "code": "Tagb",
+    "aliases": [
+      "tagbanwa"
+    ]
+  },
+  "Takr": {
+    "name": "Takri",
+    "code": "Takr",
+    "aliases": [
+      "takri",
+      "ṭākrī",
+      "ṭāṅkrī"
+    ]
+  },
+  "Tale": {
+    "name": "Tai Le",
+    "code": "Tale",
+    "aliases": [
+      "tai le"
+    ]
+  },
+  "Talu": {
+    "name": "New Tai Lue",
+    "code": "Talu",
+    "aliases": [
+      "new tai lue"
+    ]
+  },
+  "Taml": {
+    "name": "Tamil",
+    "code": "Taml",
+    "aliases": [
+      "tamil"
+    ]
+  },
+  "Tang": {
+    "name": "Tangut",
+    "code": "Tang",
+    "aliases": [
+      "tangut"
+    ]
+  },
+  "Tavt": {
+    "name": "Tai Viet",
+    "code": "Tavt",
+    "aliases": [
+      "tai viet"
+    ]
+  },
+  "Tayo": {
+    "name": "Tai Yo",
+    "code": "Tayo",
+    "aliases": [
+      "tai yo"
+    ]
+  },
+  "Telu": {
+    "name": "Telugu",
+    "code": "Telu",
+    "aliases": [
+      "telugu"
+    ]
+  },
+  "Teng": {
+    "name": "Tengwar",
+    "code": "Teng",
+    "aliases": [
+      "tengwar"
+    ]
+  },
+  "Tfng": {
+    "name": "Tifinagh",
+    "code": "Tfng",
+    "aliases": [
+      "tifinagh",
+      "berber"
+    ]
+  },
+  "Tglg": {
+    "name": "Tagalog",
+    "code": "Tglg",
+    "aliases": [
+      "tagalog",
+      "baybayin",
+      "alibata"
+    ]
+  },
+  "Thaa": {
+    "name": "Thaana",
+    "code": "Thaa",
+    "aliases": [
+      "thaana"
+    ]
+  },
+  "Thai": {
+    "name": "Thai",
+    "code": "Thai",
+    "aliases": [
+      "thai"
+    ]
+  },
+  "Tibt": {
+    "name": "Tibetan",
+    "code": "Tibt",
+    "aliases": [
+      "tibetan"
+    ]
+  },
+  "Tirh": {
+    "name": "Tirhuta",
+    "code": "Tirh",
+    "aliases": [
+      "tirhuta"
+    ]
+  },
+  "Tnsa": {
+    "name": "Tangsa",
+    "code": "Tnsa",
+    "aliases": [
+      "tangsa"
+    ]
+  },
+  "Todr": {
+    "name": "Todhri",
+    "code": "Todr",
+    "aliases": [
+      "todhri"
+    ]
+  },
+  "Tols": {
+    "name": "Tolong Siki",
+    "code": "Tols",
+    "aliases": [
+      "tolong siki"
+    ]
+  },
+  "Toto": {
+    "name": "Toto",
+    "code": "Toto",
+    "aliases": [
+      "toto"
+    ]
+  },
+  "Tutg": {
+    "name": "Tulu-Tigalari",
+    "code": "Tutg",
+    "aliases": [
+      "tulu-tigalari"
+    ]
+  },
+  "Ugar": {
+    "name": "Ugaritic",
+    "code": "Ugar",
+    "aliases": [
+      "ugaritic"
+    ]
+  },
+  "Vaii": {
+    "name": "Vai",
+    "code": "Vaii",
+    "aliases": [
+      "vai"
+    ]
+  },
+  "Visp": {
+    "name": "Visible Speech",
+    "code": "Visp",
+    "aliases": [
+      "visible speech"
+    ]
+  },
+  "Vith": {
+    "name": "Vithkuqi",
+    "code": "Vith",
+    "aliases": [
+      "vithkuqi"
+    ]
+  },
+  "Wara": {
+    "name": "Warang Citi",
+    "code": "Wara",
+    "aliases": [
+      "warang citi",
+      "varang kshiti"
+    ]
+  },
+  "Wcho": {
+    "name": "Wancho",
+    "code": "Wcho",
+    "aliases": [
+      "wancho"
+    ]
+  },
+  "Wole": {
+    "name": "Woleai",
+    "code": "Wole",
+    "aliases": [
+      "woleai"
+    ]
+  },
+  "Xpeo": {
+    "name": "Old Persian",
+    "code": "Xpeo",
+    "aliases": [
+      "old persian"
+    ]
+  },
+  "Xsux": {
+    "name": "Sumero-Akkadian cuneiform",
+    "code": "Xsux",
+    "aliases": [
+      "sumero-akkadian cuneiform"
+    ]
+  },
+  "Yezi": {
+    "name": "Yezidi",
+    "code": "Yezi",
+    "aliases": [
+      "yezidi"
+    ]
+  },
+  "Yiii": {
+    "name": "Yi",
+    "code": "Yiii",
+    "aliases": [
+      "yi"
+    ]
+  },
+  "Zanb": {
+    "name": "Zanabazar Square",
+    "code": "Zanb",
+    "aliases": [
+      "zanabazar square",
+      "zanabazarin dörböljin useg",
+      "xewtee dörböljin bicig",
+      "horizontal square script"
+    ]
+  },
+  "Zinh": {
+    "name": "Code for inherited script",
+    "code": "Zinh",
+    "aliases": [
+      "code for inherited script"
+    ]
+  },
+  "Zmth": {
+    "name": "Mathematical notation",
+    "code": "Zmth",
+    "aliases": [
+      "mathematical notation"
+    ]
+  },
+  "Zsye": {
+    "name": "Symbols (Emoji variant)",
+    "code": "Zsye",
+    "aliases": [
+      "symbols (emoji variant)"
+    ]
+  },
+  "Zsym": {
+    "name": "Symbols",
+    "code": "Zsym",
+    "aliases": [
+      "symbols"
+    ]
+  },
+  "Zxxx": {
+    "name": "Code for unwritten documents",
+    "code": "Zxxx",
+    "aliases": [
+      "code for unwritten documents"
+    ]
+  },
+  "Zyyy": {
+    "name": "Code for undetermined script",
+    "code": "Zyyy",
+    "aliases": [
+      "code for undetermined script"
+    ]
+  },
+  "Zzzz": {
+    "name": "Code for uncoded script",
+    "code": "Zzzz",
+    "aliases": [
+      "code for uncoded script"
+    ]
+  }
+}

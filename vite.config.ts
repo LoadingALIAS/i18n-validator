@@ -1,33 +1,41 @@
-import { defineConfig } from 'vitest/config'
-import { resolve } from 'path'
+import { resolve } from "node:path";
+import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   test: {
     globals: true,
-    environment: 'node',
-    setupFiles: ['./tests/setup.ts'],
-    include: ['tests/**/*.test.ts'],
-    exclude: ['**/node_modules/**', '**/dist/**'],
+    environment: "node",
+    setupFiles: ["./tests/setup.ts"],
+    include: ["tests/**/*.test.ts"],
+    exclude: [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/coverage/**",
+      "**/.{idea,git,cache,output,temp}/**",
+      "**/{vite,vitest,tsup,build}.config.*",
+    ],
     testTimeout: 20000,
     coverage: {
-      provider: 'istanbul',
-      reporter: ['text', 'json', 'html', 'lcov'],
-      include: ['src/**/*.ts'],
+      provider: "v8", // Swapped from 'istanbul' to 'v8' for speed.
+      reporter: ["text", "json", "html", "lcov"],
+      reportsDirectory: "./coverage",
+      include: ["src/**/*.ts"],
       exclude: [
-        'src/data/**',
-        'src/**/index.ts',
-        'dist/**',
-        'node_modules/**',
-        'scripts/**',
-        '**/*.d.ts'
+        "src/index.ts",
+        "src/types.ts",
+        "src/utils.ts",
+        "**/node_modules/**",
+        "**/dist/**",
+        "**/coverage/**",
+        "**/*.d.ts",
       ],
-      reportsDirectory: './coverage',
-      all: true
+      all: true,
+      clean: true,
     },
   },
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src')
-    }
+      "@": resolve(__dirname, "./src"),
+    },
   },
-})
+});

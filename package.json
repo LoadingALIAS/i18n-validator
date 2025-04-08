@@ -32,11 +32,11 @@
     "test:coverage": "vitest run --coverage",
     "test:coverage:unit": "vitest run tests/unit --coverage",
     "test:coverage:integration": "vitest run tests/integration --coverage",
-    "lint": "biome lint .",
-    "format": "biome format --write .",
-    "check": "biome check .",
-    "check:fix": "biome check --write .",
-    "check:fix:all": "biome check --write --unsafe .",
+    "lint": "biome lint",
+    "format": "biome format --write",
+    "check": "biome check",
+    "check:fix": "biome check --write",
+    "check:fix:all": "biome check --write --unsafe",
     "typecheck": "tsc --noEmit",
     "clean": "git clean -xdf dist node_modules coverage .cache",
     "prepare": "husky"
@@ -54,9 +54,7 @@
     "bcp47",
     "iso639",
     "iso15924",
-    "iso3166",
-    "lightweight",
-    "tree-shaking"
+    "iso3166"
   ],
   "author": "LoadingALIAS",
   "license": "MIT",
@@ -75,8 +73,8 @@
   },
   "lint-staged": {
     "*.{js,ts,cjs,mjs,jsx,tsx,json,jsonc}": [
-      "biome check --apply --no-errors-on-unmatched",
-      "biome lint --apply --no-errors-on-unmatched"
+      "biome check --write --no-errors-on-unmatched",
+      "biome lint --write --no-errors-on-unmatched"
     ]
   },
   "engines": {

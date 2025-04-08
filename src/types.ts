@@ -1,17 +1,18 @@
+/**
+ * MODIFY: Refined public and internal types
+ */
+
 /** Core types: LanguageData, RegionData, ScriptData, NormalizedResult */
 export type LanguageData = {
   name: string;
-  native: string;
   iso639_1: string;
   iso639_2: string;
   iso639_3: string;
-  bcp47: string;
   region?: string;
   script?: string;
-  suppressScript?: string;  // From IANA's Suppress-Script field
-  scope?: 'macrolanguage' | 'collection' | 'special';  // From IANA's Scope field
-  aliases: string[];
-  added: string;  // IANA registry addition date
+  suppressScript?: string; // From IANA's Suppress-Script field
+  scope?: "macrolanguage" | "collection" | "special"; // From IANA's Scope field
+  aliases: string[]; // Includes native names and other variations
 };
 
 export type RegionData = {
@@ -20,25 +21,22 @@ export type RegionData = {
   alpha3: string;
   numeric: string;
   aliases: string[];
-  added: string;  // IANA registry addition date
 };
 
 export type ScriptData = {
   name: string;
-  code: string;  // 4-letter ISO 15924 code
-  numeric: string;
+  code: string; // 4-letter ISO 15924 code
   aliases: string[];
-  added: string;  // IANA registry addition date
 };
 
 export type NormalizedResult<T> = T | null;
 
-/** Validation feedback interface for combined validation results */
+/** Validation feedback interface for results of validation operations */
 export interface ValidationFeedback {
   isValid: boolean;
-  normalized?: string;    // e.g. "en-US"
-  suggestions?: string[]; // if fuzzy logic suggests other codes
-  helpText?: string;     // optional explanation
+  normalized: string | null; // null represents invalid result
+  helpText: string; // explanation message
+  suggestions: string[]; // fuzzy matches and suggestions
   details?: {
     language?: {
       code: string;

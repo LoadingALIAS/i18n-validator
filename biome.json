@@ -13,6 +13,8 @@
       "dist",
       "build",
       "out",
+      ".*cache",
+      "src/data/*.json",
       "*.tsbuildinfo",
       ".mjs",
       ".cjs",
@@ -21,23 +23,24 @@
       "**/*.test.ts"
     ]
   },
+  "organizeImports": {
+    "enabled": true
+  },
   "formatter": {
     "enabled": true,
     "formatWithErrors": true,
     "ignore": [],
-    "attributePosition": "auto",
     "indentStyle": "space",
-    "lineWidth": 120
-  },
-  "organizeImports": {
-    "enabled": true
+    "indentWidth": 2,
+    "lineWidth": 120,
+    "attributePosition": "auto"
   },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
       "style": {
-        "noUnusedTemplateLiteral": "off"
+        "noUnusedTemplateLiteral": "warn"
       }
     }
   },
@@ -54,7 +57,11 @@
     }
   },
   "json": {
+    "parser": {
+      "allowComments": true
+    },
     "formatter": {
+      "enabled": true,
       "trailingCommas": "none"
     }
   }
