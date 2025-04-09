@@ -3,7 +3,7 @@
 > The definitive, type-safe validator, normalizer, and suggester for **all** i18n codes (Languages, Regions, Scripts). **Tiny core (<5kB gzipped!), load only the data you need, dynamically.**
 
 [![NPM version](https://img.shields.io/npm/v/i18n-validator.svg)](https://npmjs.org/package/i18n-validator)
-[![License](https://img.shields.io/npm/l/i18n-validator.svg)](https://github.com/YOUR_USERNAME/i18n-validator/blob/main/LICENSE)
+[![License](https://img.shields.io/npm/l/i18n-validator.svg)](https://github.com/loadingalias/i18n-validator/blob/main/LICENSE)
 
 ## 🌍 The Problem
 
@@ -14,6 +14,12 @@ Handling internationalization codes (languages, regions, scripts) is surprisingl
 - **Bundle Bloat:** Existing libraries often bundle huge datasets, inflating your application size even if you only need a few codes.
 - **Runtime Overhead:** Loading and parsing large data files at runtime, even for simple lookups.
 - **Poor DX:** Lack of TypeScript support, inconsistent APIs, no built-in fuzzy matching or suggestions.
+
+## 🔥 Demo
+
+Try the interactive demo: [https://loadingalias.github.io/i18n-validator](https://loadingalias.github.io/i18n-validator)
+
+See the library in action, configure which data to load, and test parsing, validation, and suggestions!
 
 ## ✨ The Solution: `i18n-validator`
 
@@ -231,4 +237,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 👩‍💻 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please feel free to submit a Pull Request to the [GitHub repository](https://github.com/loadingalias/i18n-validator).
