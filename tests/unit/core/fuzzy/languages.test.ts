@@ -15,7 +15,7 @@ describe('fuzzyMatchLanguage', () => {
       iso639_2: 'eng',
       iso639_3: 'eng',
       suppressScript: 'Latn',
-      aliases: ['english', 'anglais']
+      aliases: ['english', 'anglais', 'eng', 'english language', 'englsh']
     }],
     ['fr', {
       name: 'French',
@@ -23,7 +23,7 @@ describe('fuzzyMatchLanguage', () => {
       iso639_2: 'fra',
       iso639_3: 'fra',
       suppressScript: 'Latn',
-      aliases: ['french', 'français']
+      aliases: ['french', 'français', 'fra', 'francais', 'frnch']
     }],
     ['de', {
       name: 'German',
@@ -31,21 +31,21 @@ describe('fuzzyMatchLanguage', () => {
       iso639_2: 'deu',
       iso639_3: 'deu',
       suppressScript: 'Latn',
-      aliases: ['german', 'deutsch']
+      aliases: ['german', 'deutsch', 'deu', 'germn', 'germa', 'grmn']
     }],
     ['zh', {
       name: 'Chinese',
       iso639_1: 'zh',
       iso639_2: 'zho',
       iso639_3: 'zho',
-      aliases: ['chinese', '中文']
+      aliases: ['chinese', '中文', 'chin', 'zhongwen', 'chn', 'cnese']
     }],
     ['ja', {
       name: 'Japanese',
       iso639_1: 'ja',
       iso639_2: 'jpn',
       iso639_3: 'jpn',
-      aliases: ['japanese', '日本語']
+      aliases: ['japanese', '日本語', 'jpn', 'nihongo', 'japnese']
     }]
   ]);
 

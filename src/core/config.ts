@@ -3,10 +3,10 @@ import type { LanguageData, RegionData, ScriptData } from "../types";
 /**
  * Module state to hold loaded data
  */
-let loadedLanguages = new Map<string, LanguageData>();
-let loadedRegions = new Map<string, RegionData>();
-let loadedScripts = new Map<string, ScriptData>();
-let isInitialized = false;
+const loadedLanguages = new Map<string, LanguageData>();
+const loadedRegions = new Map<string, RegionData>();
+const loadedScripts = new Map<string, ScriptData>();
+const initializedRef = { value: false };
 
 /**
  * Configuration options for loading data
@@ -32,6 +32,12 @@ export interface ConfigureOptions {
    * When not provided, all available scripts will be loaded
    */
   scripts?: string[];
+
+  /**
+   * Array of predefined groups to load (e.g., 'common-web', 'eu', 'cjk')
+   * These will be merged with any explicitly provided codes
+   */
+  groups?: string[];
 
   /**
    * Custom data to use instead of loading from built-in data sources
@@ -64,191 +70,186 @@ export interface ConfigureOptions {
  *   languages: ['en', 'es', 'fr'],
  *   regions: ['US', 'ES', 'FR']
  * });
+ *
+ * @example
+ * // Load using predefined groups
+ * await configure({
+ *   groups: ['common-web']
+ * });
  */
 export async function configure(options: ConfigureOptions = {}): Promise<void> {
   // Reset any existing data
-  loadedLanguages = new Map<string, LanguageData>();
-  loadedRegions = new Map<string, RegionData>();
-  loadedScripts = new Map<string, ScriptData>();
-  isInitialized = false;
+  loadedLanguages.clear();
+  loadedRegions.clear();
+  loadedScripts.clear();
+  initializedRef.value = false;
 
   try {
     // Handle custom data (primarily for testing)
     if (options.customData) {
       if (options.customData.languages) {
-        const langEntries = Object.entries(options.customData.languages);
-        for (const [code, data] of langEntries) {
+        for (const [code, data] of Object.entries(options.customData.languages)) {
           loadedLanguages.set(code, data);
         }
       }
 
       if (options.customData.regions) {
-        const regionEntries = Object.entries(options.customData.regions);
-        for (const [code, data] of regionEntries) {
+        for (const [code, data] of Object.entries(options.customData.regions)) {
           loadedRegions.set(code, data);
         }
       }
 
       if (options.customData.scripts) {
-        const scriptEntries = Object.entries(options.customData.scripts);
-        for (const [code, data] of scriptEntries) {
+        for (const [code, data] of Object.entries(options.customData.scripts)) {
           loadedScripts.set(code, data);
         }
       }
 
       // Mark as initialized even with custom data
-      isInitialized = true;
+      initializedRef.value = true;
       return;
     }
 
-    // Dynamic import for languages data
-    const languagesData = (await import("../data/languages.json")).default as Record<string, LanguageData>;
+    // Calculate codes to load from groups and explicitly provided codes
+    const languagesToLoad = new Set<string>(options.languages || []);
+    const regionsToLoad = new Set<string>(options.regions || []);
+    const scriptsToLoad = new Set<string>(options.scripts || []);
 
-    // If specific languages are requested, only load those
-    if (options.languages && options.languages.length > 0) {
-      for (const code of options.languages) {
-        const normalizedCode = code.toLowerCase();
-        if (normalizedCode in languagesData) {
-          loadedLanguages.set(normalizedCode, languagesData[normalizedCode]);
-        }
-      }
-    } else {
-      // Otherwise, load all languages
-      for (const [code, data] of Object.entries(languagesData)) {
-        loadedLanguages.set(code, data as LanguageData);
+    // Process groups, if provided
+    if (options.groups && options.groups.length > 0) {
+      await Promise.all(
+        options.groups.map(async (groupName) => {
+          try {
+            // Import the group definition
+            const groupData = await import(`../data/groups/${groupName}.json`);
+
+            // Add group languages
+            if (groupData.languages) {
+              for (const code of groupData.languages) {
+                languagesToLoad.add(code);
+              }
+            }
+
+            // Add group regions
+            if (groupData.regions) {
+              for (const code of groupData.regions) {
+                regionsToLoad.add(code);
+              }
+            }
+
+            // Add group scripts
+            if (groupData.scripts) {
+              for (const code of groupData.scripts) {
+                scriptsToLoad.add(code);
+              }
+            }
+          } catch (error) {
+            console.warn(`Failed to load group "${groupName}": ${error}`);
+          }
+        }),
+      );
+    }
+
+    // Parallel fetch of manifests
+    const [languagesManifest, regionsManifest, scriptsManifest] = await Promise.all([
+      // If no specific languages are requested, load the manifest
+      languagesToLoad.size === 0 && !options.languages
+        ? import("../data/languages/index.json").catch((error) => {
+            console.error(`Failed to load languages manifest: ${error}`);
+            return { codes: [] };
+          })
+        : { codes: [] },
+
+      // If no specific regions are requested, load the manifest
+      regionsToLoad.size === 0 && !options.regions
+        ? import("../data/regions/index.json").catch((error) => {
+            console.error(`Failed to load regions manifest: ${error}`);
+            return { codes: [] };
+          })
+        : { codes: [] },
+
+      // If no specific scripts are requested, load the manifest
+      scriptsToLoad.size === 0 && !options.scripts
+        ? import("../data/scripts/index.json").catch((error) => {
+            console.error(`Failed to load scripts manifest: ${error}`);
+            return { codes: [] };
+          })
+        : { codes: [] },
+    ]);
+
+    // Add manifest codes if we need to load all
+    if (languagesToLoad.size === 0 && !options.languages) {
+      for (const code of languagesManifest.codes || []) {
+        languagesToLoad.add(code);
       }
     }
 
-    // Dynamic import for regions data
-    const regionsData = (await import("../data/regions.json")).default as Record<string, RegionData>;
-
-    // If specific regions are requested, only load those
-    if (options.regions && options.regions.length > 0) {
-      for (const code of options.regions) {
-        const normalizedCode = code.toUpperCase();
-        if (normalizedCode in regionsData) {
-          loadedRegions.set(normalizedCode, regionsData[normalizedCode]);
-        }
-      }
-    } else {
-      // Otherwise, load all regions
-      for (const [code, data] of Object.entries(regionsData)) {
-        loadedRegions.set(code, data as RegionData);
+    if (regionsToLoad.size === 0 && !options.regions) {
+      for (const code of regionsManifest.codes || []) {
+        regionsToLoad.add(code);
       }
     }
 
-    // Dynamic import for scripts data
-    const scriptsData = (await import("../data/scripts.json")).default as Record<string, ScriptData>;
-
-    // If specific scripts are requested, only load those
-    if (options.scripts && options.scripts.length > 0) {
-      for (const code of options.scripts) {
-        // First character uppercase, rest lowercase
-        const normalizedCode = code.charAt(0).toUpperCase() + code.slice(1).toLowerCase();
-        if (normalizedCode in scriptsData) {
-          loadedScripts.set(normalizedCode, scriptsData[normalizedCode]);
-        }
-      }
-    } else {
-      // Otherwise, load all scripts
-      for (const [code, data] of Object.entries(scriptsData)) {
-        loadedScripts.set(code, data as ScriptData);
+    if (scriptsToLoad.size === 0 && !options.scripts) {
+      for (const code of scriptsManifest.codes || []) {
+        scriptsToLoad.add(code);
       }
     }
+
+    // Load individual data files in parallel
+    const loadPromises: Promise<unknown>[] = [];
+
+    // Load individual language files
+    for (const code of languagesToLoad) {
+      const normalizedCode = code.toLowerCase();
+      loadPromises.push(
+        import(`../data/languages/${normalizedCode}.json`)
+          .then((data) => {
+            loadedLanguages.set(normalizedCode, data as unknown as LanguageData);
+          })
+          .catch((error) => {
+            console.warn(`Failed to load language "${code}": ${error}`);
+          }),
+      );
+    }
+
+    // Load individual region files
+    for (const code of regionsToLoad) {
+      const normalizedCode = code.toUpperCase();
+      loadPromises.push(
+        import(`../data/regions/${normalizedCode}.json`)
+          .then((data) => {
+            loadedRegions.set(normalizedCode, data as unknown as RegionData);
+          })
+          .catch((error) => {
+            console.warn(`Failed to load region "${code}": ${error}`);
+          }),
+      );
+    }
+
+    // Load individual script files
+    for (const code of scriptsToLoad) {
+      // First character uppercase, rest lowercase
+      const normalizedCode = code.charAt(0).toUpperCase() + code.slice(1).toLowerCase();
+      loadPromises.push(
+        import(`../data/scripts/${normalizedCode}.json`)
+          .then((data) => {
+            loadedScripts.set(normalizedCode, data as unknown as ScriptData);
+          })
+          .catch((error) => {
+            console.warn(`Failed to load script "${code}": ${error}`);
+          }),
+      );
+    }
+
+    // Wait for all dynamic imports to complete
+    await Promise.all(loadPromises);
 
     // Mark as initialized
-    isInitialized = true;
+    initializedRef.value = true;
   } catch (error) {
     throw new Error(`Failed to load validator data: ${error}`);
   }
-}
-
-/**
- * Test utility function to directly set data for testing
- * This function should only be used for testing purposes
- */
-export function _setTestData(
-  languages?: Record<string, LanguageData>,
-  regions?: Record<string, RegionData>,
-  scripts?: Record<string, ScriptData>,
-): void {
-  // Reset the current state completely
-  loadedLanguages.clear();
-  loadedRegions.clear();
-  loadedScripts.clear();
-
-  // For the test 'should load only specified test data types'
-  if (languages && !regions && !scripts) {
-    // Only load languages
-    loadedLanguages = new Map(Object.entries(languages));
-    isInitialized = true;
-    return;
-  }
-  if (!languages && regions && !scripts) {
-    // Only load regions
-    loadedRegions = new Map(Object.entries(regions));
-    isInitialized = true;
-    return;
-  }
-  if (!languages && !regions && scripts) {
-    // Only load scripts
-    loadedScripts = new Map(Object.entries(scripts));
-    isInitialized = true;
-    return;
-  }
-
-  // Special case for filtering tests
-  if (
-    languages &&
-    Object.keys(languages).length === 2 &&
-    Object.keys(languages).includes("en") &&
-    Object.keys(languages).includes("fr")
-  ) {
-    // This is the language filtering test
-    loadedLanguages = new Map(Object.entries(languages));
-    isInitialized = true;
-    return;
-  }
-
-  if (
-    regions &&
-    Object.keys(regions).length === 2 &&
-    Object.keys(regions).includes("US") &&
-    Object.keys(regions).includes("DE")
-  ) {
-    // This is the region filtering test
-    loadedRegions = new Map(Object.entries(regions));
-    isInitialized = true;
-    return;
-  }
-
-  if (
-    scripts &&
-    Object.keys(scripts).length === 2 &&
-    Object.keys(scripts).includes("Latn") &&
-    Object.keys(scripts).includes("Hans")
-  ) {
-    // This is the script filtering test
-    loadedScripts = new Map(Object.entries(scripts));
-    isInitialized = true;
-    return;
-  }
-
-  // Normal case - set all provided data
-  if (languages) {
-    loadedLanguages = new Map(Object.entries(languages));
-  }
-
-  if (regions) {
-    loadedRegions = new Map(Object.entries(regions));
-  }
-
-  if (scripts) {
-    loadedScripts = new Map(Object.entries(scripts));
-  }
-
-  // Mark as initialized if any data was loaded
-  isInitialized = !!(languages || regions || scripts);
 }
 
 /**
@@ -257,7 +258,7 @@ export function _setTestData(
  * @returns True if data has been loaded with configure(), false otherwise
  */
 export function isDataLoaded(): boolean {
-  return isInitialized;
+  return initializedRef.value;
 }
 
 /**
@@ -307,7 +308,7 @@ export function getLoadedScripts(): Map<string, ScriptData> {
  * @throws Error if data is not loaded
  */
 export function getLanguageData(code: string): LanguageData | undefined {
-  if (!isInitialized) {
+  if (!initializedRef.value) {
     throw new Error("Data not loaded. Call configure() first.");
   }
   return loadedLanguages.get(code);
@@ -321,7 +322,7 @@ export function getLanguageData(code: string): LanguageData | undefined {
  * @throws Error if data is not loaded
  */
 export function getRegionData(code: string): RegionData | undefined {
-  if (!isInitialized) {
+  if (!initializedRef.value) {
     throw new Error("Data not loaded. Call configure() first.");
   }
   return loadedRegions.get(code);
@@ -335,7 +336,7 @@ export function getRegionData(code: string): RegionData | undefined {
  * @throws Error if data is not loaded
  */
 export function getScriptData(code: string): ScriptData | undefined {
-  if (!isInitialized) {
+  if (!initializedRef.value) {
     throw new Error("Data not loaded. Call configure() first.");
   }
   return loadedScripts.get(code);
@@ -349,5 +350,5 @@ export function reset(): void {
   loadedLanguages.clear();
   loadedRegions.clear();
   loadedScripts.clear();
-  isInitialized = false;
+  initializedRef.value = false;
 }

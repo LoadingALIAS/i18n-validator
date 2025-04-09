@@ -1,9 +1,5 @@
-/**
- * Integration tests for the core API flow: configure -> parse -> suggest -> validate
- */
-
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { configure, parse, suggest, validate, validateBCP47, type ValidationType } from '../../src';
+import { parse, suggest, validate, validateBCP47 } from '../../src';
 import { clearMockData, setupMockConfigTest } from '../setup';
 import * as config from '../../src/core/config';
 

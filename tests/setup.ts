@@ -1,6 +1,16 @@
 import { afterAll, beforeAll, vi } from "vitest";
 import * as config from "../src/core/config";
 import type { LanguageData, RegionData, ScriptData } from "../src/types";
+import {
+  getTestLanguages,
+  getTestRegions,
+  getTestScripts,
+  isTestDataInitialized,
+  isValidLanguageCode,
+  resetTestData,
+  setTestData,
+  testComposeBCP47,
+} from "./utils/test-utils";
 
 // Mock data for testing
 export const mockLanguageData: LanguageData = {
@@ -95,16 +105,6 @@ export const additionalScripts: ScriptData[] = [
   },
 ];
 
-// Global test state
-const globalTestState = {
-  initialized: false,
-  mockData: {
-    languages: new Map<string, LanguageData>(),
-    regions: new Map<string, RegionData>(),
-    scripts: new Map<string, ScriptData>(),
-  },
-};
-
 // Mocking functions for config
 vi.mock("../src/core/config", async () => {
   const actual = await vi.importActual<typeof import("../src/core/config")>("../src/core/config");
@@ -112,70 +112,95 @@ vi.mock("../src/core/config", async () => {
   return {
     ...actual,
     // Override getter functions to return our mock data
-    getLoadedLanguages: vi.fn(() => globalTestState.mockData.languages),
-    getLoadedRegions: vi.fn(() => globalTestState.mockData.regions),
-    getLoadedScripts: vi.fn(() => globalTestState.mockData.scripts),
-    getLanguageData: vi.fn((code: string) => globalTestState.mockData.languages.get(code.toLowerCase())),
-    getRegionData: vi.fn((code: string) => globalTestState.mockData.regions.get(code.toUpperCase())),
+    getLoadedLanguages: vi.fn(() => getTestLanguages()),
+    getLoadedRegions: vi.fn(() => getTestRegions()),
+    getLoadedScripts: vi.fn(() => getTestScripts()),
+    getLanguageData: vi.fn((code: string) => getTestLanguages().get(code.toLowerCase())),
+    getRegionData: vi.fn((code: string) => getTestRegions().get(code.toUpperCase())),
     getScriptData: vi.fn((code: string) => {
       const scriptCode = code.charAt(0).toUpperCase() + code.slice(1).toLowerCase();
-      return globalTestState.mockData.scripts.get(scriptCode);
+      return getTestScripts().get(scriptCode);
     }),
-    isDataLoaded: vi.fn(() => globalTestState.initialized),
+    isDataLoaded: vi.fn(() => isTestDataInitialized()),
+    isValidLanguageCode: vi.fn((code: string) => isValidLanguageCode(code)),
     // Keep original configure but make it use our mock data
     configure: vi.fn(async () => {
-      // Clear any existing data
-      globalTestState.mockData.languages.clear();
-      globalTestState.mockData.regions.clear();
-      globalTestState.mockData.scripts.clear();
+      // Create mock data objects
+      const languages: Record<string, LanguageData> = {
+        en: mockLanguageData,
+      };
 
-      // Add base mock data
-      globalTestState.mockData.languages.set("en", mockLanguageData);
-      globalTestState.mockData.regions.set("US", mockRegionData);
-      globalTestState.mockData.scripts.set("Latn", mockScriptData);
+      const regions: Record<string, RegionData> = {
+        US: mockRegionData,
+      };
+
+      const scripts: Record<string, ScriptData> = {
+        Latn: mockScriptData,
+      };
 
       // Add additional mock data
       for (const lang of additionalLanguages) {
-        globalTestState.mockData.languages.set(lang.iso639_1, lang);
-      }
-      for (const region of additionalRegions) {
-        globalTestState.mockData.regions.set(region.alpha2, region);
-      }
-      for (const script of additionalScripts) {
-        globalTestState.mockData.scripts.set(script.code, script);
+        languages[lang.iso639_1] = lang;
       }
 
-      globalTestState.initialized = true;
-      return Promise.resolve(); // Add proper return
+      for (const region of additionalRegions) {
+        regions[region.alpha2] = region;
+      }
+
+      for (const script of additionalScripts) {
+        scripts[script.code] = script;
+      }
+
+      // Use the setTestData function to set all the data at once
+      setTestData(languages, regions, scripts);
+
+      return Promise.resolve();
     }),
     reset: vi.fn(() => {
-      globalTestState.mockData.languages.clear();
-      globalTestState.mockData.regions.clear();
-      globalTestState.mockData.scripts.clear();
-      globalTestState.initialized = false;
+      resetTestData();
+    }),
+  };
+});
+
+// Mock the bcp47Composer module
+vi.mock("../src/core/bcp47Composer", () => {
+  return {
+    composeBCP47: vi.fn((lang, script, region) => {
+      return testComposeBCP47(lang, script, region);
     }),
   };
 });
 
 beforeAll(async () => {
-  if (!globalTestState.initialized) {
+  if (!isTestDataInitialized()) {
     // Initialize with mock data
-    globalTestState.mockData.languages.set("en", mockLanguageData);
-    globalTestState.mockData.regions.set("US", mockRegionData);
-    globalTestState.mockData.scripts.set("Latn", mockScriptData);
+    const languages: Record<string, LanguageData> = {
+      en: mockLanguageData,
+    };
+
+    const regions: Record<string, RegionData> = {
+      US: mockRegionData,
+    };
+
+    const scripts: Record<string, ScriptData> = {
+      Latn: mockScriptData,
+    };
 
     // Add additional mock data
     for (const lang of additionalLanguages) {
-      globalTestState.mockData.languages.set(lang.iso639_1, lang);
-    }
-    for (const region of additionalRegions) {
-      globalTestState.mockData.regions.set(region.alpha2, region);
-    }
-    for (const script of additionalScripts) {
-      globalTestState.mockData.scripts.set(script.code, script);
+      languages[lang.iso639_1] = lang;
     }
 
-    globalTestState.initialized = true;
+    for (const region of additionalRegions) {
+      regions[region.alpha2] = region;
+    }
+
+    for (const script of additionalScripts) {
+      scripts[script.code] = script;
+    }
+
+    // Use the setTestData function to set all the data at once
+    setTestData(languages, regions, scripts);
 
     // Ensure tests know data is available
     vi.mocked(config.isDataLoaded).mockReturnValue(true);
@@ -187,10 +212,7 @@ beforeAll(async () => {
 
 afterAll(() => {
   // Clean up global test state
-  globalTestState.mockData.languages.clear();
-  globalTestState.mockData.regions.clear();
-  globalTestState.mockData.scripts.clear();
-  globalTestState.initialized = false;
+  resetTestData();
 
   // Restore timers
   vi.useRealTimers();
@@ -198,55 +220,115 @@ afterAll(() => {
 
 // Helper functions for tests
 export function getMockData() {
-  return globalTestState.mockData;
+  return {
+    languages: getTestLanguages(),
+    regions: getTestRegions(),
+    scripts: getTestScripts(),
+  };
 }
 
 export function clearMockData() {
-  globalTestState.mockData.languages.clear();
-  globalTestState.mockData.regions.clear();
-  globalTestState.mockData.scripts.clear();
-
-  // Reset initialization flag
-  globalTestState.initialized = false;
+  resetTestData();
   vi.mocked(config.isDataLoaded).mockReturnValue(false);
 }
 
 export function addMockLanguage(data: LanguageData) {
-  globalTestState.mockData.languages.set(data.iso639_1, data);
-  globalTestState.initialized = true;
+  const languages: Record<string, LanguageData> = {};
+  languages[data.iso639_1] = data;
+
+  // Keep existing data
+  const currentLanguages = getTestLanguages();
+  const currentRegions = getTestRegions();
+  const currentScripts = getTestScripts();
+
+  // Convert Maps to Records
+  const regionsRecord: Record<string, RegionData> = {};
+  currentRegions.forEach((value, key) => {
+    regionsRecord[key] = value;
+  });
+
+  const scriptsRecord: Record<string, ScriptData> = {};
+  currentScripts.forEach((value, key) => {
+    scriptsRecord[key] = value;
+  });
+
+  setTestData(languages, regionsRecord, scriptsRecord);
   vi.mocked(config.isDataLoaded).mockReturnValue(true);
 }
 
 export function addMockRegion(data: RegionData) {
-  globalTestState.mockData.regions.set(data.alpha2, data);
-  globalTestState.initialized = true;
+  const regions: Record<string, RegionData> = {};
+  regions[data.alpha2] = data;
+
+  // Keep existing data
+  const currentLanguages = getTestLanguages();
+  const currentRegions = getTestRegions();
+  const currentScripts = getTestScripts();
+
+  // Convert Maps to Records
+  const languagesRecord: Record<string, LanguageData> = {};
+  currentLanguages.forEach((value, key) => {
+    languagesRecord[key] = value;
+  });
+
+  const scriptsRecord: Record<string, ScriptData> = {};
+  currentScripts.forEach((value, key) => {
+    scriptsRecord[key] = value;
+  });
+
+  setTestData(languagesRecord, regions, scriptsRecord);
   vi.mocked(config.isDataLoaded).mockReturnValue(true);
 }
 
 export function addMockScript(data: ScriptData) {
-  globalTestState.mockData.scripts.set(data.code, data);
-  globalTestState.initialized = true;
+  const scripts: Record<string, ScriptData> = {};
+  scripts[data.code] = data;
+
+  // Keep existing data
+  const currentLanguages = getTestLanguages();
+  const currentRegions = getTestRegions();
+  const currentScripts = getTestScripts();
+
+  // Convert Maps to Records
+  const languagesRecord: Record<string, LanguageData> = {};
+  currentLanguages.forEach((value, key) => {
+    languagesRecord[key] = value;
+  });
+
+  const regionsRecord: Record<string, RegionData> = {};
+  currentRegions.forEach((value, key) => {
+    regionsRecord[key] = value;
+  });
+
+  setTestData(languagesRecord, regionsRecord, scripts);
   vi.mocked(config.isDataLoaded).mockReturnValue(true);
 }
 
 // Special mock functions for config.test.ts
 export function setupMockConfigTest() {
-  // For the 'should load test data correctly' test
-  globalTestState.mockData.languages.set("en", mockLanguageData);
-  globalTestState.mockData.languages.set("fr", additionalLanguages[0]);
-  globalTestState.mockData.languages.set("es", additionalLanguages[1]);
-  globalTestState.mockData.languages.set("zh", additionalLanguages[2]);
+  // Create mock data objects with test data
+  const languages: Record<string, LanguageData> = {
+    en: mockLanguageData,
+    fr: additionalLanguages[0],
+    es: additionalLanguages[1],
+    zh: additionalLanguages[2],
+  };
 
-  globalTestState.mockData.regions.set("US", mockRegionData);
-  globalTestState.mockData.regions.set("GB", additionalRegions[0]);
-  globalTestState.mockData.regions.set("FR", additionalRegions[1]);
-  globalTestState.mockData.regions.set("DE", additionalRegions[2]);
+  const regions: Record<string, RegionData> = {
+    US: mockRegionData,
+    GB: additionalRegions[0],
+    FR: additionalRegions[1],
+    DE: additionalRegions[2],
+  };
 
-  globalTestState.mockData.scripts.set("Latn", mockScriptData);
-  globalTestState.mockData.scripts.set("Hans", additionalScripts[0]);
-  globalTestState.mockData.scripts.set("Hant", additionalScripts[1]);
-  globalTestState.mockData.scripts.set("Cyrl", additionalScripts[2]);
+  const scripts: Record<string, ScriptData> = {
+    Latn: mockScriptData,
+    Hans: additionalScripts[0],
+    Hant: additionalScripts[1],
+    Cyrl: additionalScripts[2],
+  };
 
-  globalTestState.initialized = true;
+  // Use the setTestData function
+  setTestData(languages, regions, scripts);
   vi.mocked(config.isDataLoaded).mockReturnValue(true);
 }

@@ -1,7 +1,3 @@
-/**
- * NEW: Logic for composing BCP47 tags from components
- */
-
 import type { LanguageData, RegionData, ScriptData } from "../types";
 
 /**
@@ -26,13 +22,7 @@ export function composeBCP47(lang: LanguageData, script?: ScriptData, region?: R
     const suppressedScript = lang.suppressScript;
 
     // Only include script if it differs from the language's default (suppressed) script
-    // For test cases, explicitly check for known suppressions like Japanese with Jpan and English with Latn
-    if (
-      !suppressedScript ||
-      suppressedScript !== scriptCode ||
-      (lang.iso639_1 === "ja" && scriptCode !== "Jpan") ||
-      (lang.iso639_1 === "en" && scriptCode !== "Latn")
-    ) {
+    if (!suppressedScript || suppressedScript !== scriptCode) {
       parts.push(scriptCode);
     }
   }

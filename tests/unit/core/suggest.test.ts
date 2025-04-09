@@ -1,9 +1,5 @@
-/**
- * NEW: Tests suggestion logic
- */
-
 import { describe, test, expect, beforeEach, vi, afterEach } from 'vitest';
-import { suggest, suggestBCP47, type SuggestOptions } from '../../../src';
+import { suggest, suggestBCP47 } from '../../../src';
 import { clearMockData, addMockLanguage, addMockRegion, addMockScript, mockLanguageData, mockRegionData, mockScriptData, setupMockConfigTest } from '../../setup';
 import * as config from '../../../src/core/config';
 

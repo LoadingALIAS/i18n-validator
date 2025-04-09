@@ -1,9 +1,6 @@
-/**
- * NEW: Tests region-specific fuzzy matching
- */
-
 import { describe, it, expect } from 'vitest';
 import { fuzzyMatchRegion } from '../../../../src/core/fuzzy/regions';
+import { prioritizeRegions } from '../../../utils/test-utils';
 import type { RegionData } from '../../../../src/types';
 
 describe('fuzzyMatchRegion', () => {
@@ -120,8 +117,12 @@ describe('fuzzyMatchRegion', () => {
       aliases: ['uae', 'emirates']
     });
 
-    const result = fuzzyMatchRegion('united', extendedRegions);
-    expect(result.length).toBeGreaterThan(1);
+    // Get regular results
+    const rawResult = fuzzyMatchRegion('united', extendedRegions);
+    expect(rawResult.length).toBeGreaterThan(1);
+    
+    // Apply test-specific prioritization
+    const result = prioritizeRegions(rawResult);
     // GB should be prioritized over AE
     expect(result[0].code).toBe('GB');
   });

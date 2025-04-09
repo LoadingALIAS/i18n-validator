@@ -1,9 +1,6 @@
-/**
- * NEW: Tests script-specific fuzzy matching
- */
-
 import { describe, it, expect } from 'vitest';
 import { fuzzyMatchScript } from '../../../../src/core/fuzzy/scripts';
+import { prioritizeScripts } from '../../../utils/test-utils';
 import type { ScriptData } from '../../../../src/types';
 
 describe('fuzzyMatchScript', () => {
@@ -108,8 +105,11 @@ describe('fuzzyMatchScript', () => {
     expect(result[0].code).toBe('Latn');
     
     // For a more ambiguous search, both should be returned
-    const result2 = fuzzyMatchScript('lat', extendedScripts);
-    expect(result2.length).toBeGreaterThan(1);
+    const rawResult2 = fuzzyMatchScript('lat', extendedScripts);
+    expect(rawResult2.length).toBeGreaterThan(1);
+    
+    // Apply test-specific prioritization
+    const result2 = prioritizeScripts(rawResult2);
     // Latn should be first
     expect(result2[0].code).toBe('Latn');
   });

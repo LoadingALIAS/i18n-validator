@@ -20,6 +20,12 @@
  *   regions: ['US', 'ES', 'FR', 'GB'],
  *   scripts: ['Latn']
  * });
+ *
+ * @example
+ * // Load data using predefined groups
+ * await configure({
+ *   groups: ['common-web']
+ * });
  */
 export { configure } from "./core/config";
 
@@ -32,12 +38,15 @@ export { configure } from "./core/config";
  * // Parse "english us"
  * const result = parse("english us");
  * // result = {
- * //   language: { code: "en", valid: true, ... },
- * //   region: { code: "US", valid: true, ... },
- * //   script: null,
- * //   normalizedTag: "en-US",
- * //   valid: true,
- * //   feedback: { ... }
+ * //   isValid: true,
+ * //   normalized: "en-US",
+ * //   details: {
+ * //     language: { code: "en", valid: true, name: "English", ... },
+ * //     region: { code: "US", valid: true, name: "United States", ... },
+ * //     script: null,
+ * //   },
+ * //   helpText: "...",
+ * //   suggestions: [...]
  * // }
  */
 export { parse } from "./core/parser";
@@ -52,21 +61,35 @@ export { parse } from "./core/parser";
  * // suggestions = ["en", "de", "fr", ...]
  *
  * // Suggest BCP 47 tags for "english united"
- * const tags = suggestBCP47("english united");
- * // tags = ["en-US", "en-GB", ...]
+ * const result = suggestBCP47("english united");
+ * // result = {
+ * //   isValid: false,
+ * //   normalized: null,
+ * //   suggestions: ["en-US", "en-GB", ...],
+ * //   helpText: "Did you mean one of these combinations?"
+ * // }
  */
 export { suggest, suggestBCP47, type SuggestOptions, type SuggestionType } from "./core/suggest";
 
 /**
  * Simple validation of language, region, script codes, or complete BCP 47 tags.
- * Returns a boolean indicating whether the input is valid.
+ * Returns a boolean indicating whether the input is valid or detailed validation feedback.
  *
  * @example
  * // Validate a language code
  * const isValid = validate("en", "language"); // true
  *
- * // Validate a BCP 47 tag
- * const isValidTag = validateBCP47("en-US"); // true
+ * // Validate a BCP 47 tag with detailed feedback
+ * const result = validateBCP47("en-US");
+ * // result = {
+ * //   isValid: true,
+ * //   normalized: "en-US",
+ * //   helpText: "Valid BCP47 tag",
+ * //   details: {
+ * //     language: { code: "en", valid: true, name: "English", ... },
+ * //     region: { code: "US", valid: true, name: "United States", ... }
+ * //   }
+ * // }
  */
 export { validate, validateBCP47, type ValidationType } from "./core/validate";
 

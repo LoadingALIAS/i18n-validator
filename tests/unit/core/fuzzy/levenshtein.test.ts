@@ -3,7 +3,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { levenshteinDistance } from '../../../../src/core/fuzzy/levenshtein';
+import { levenshteinDistance } from '../../../../src/utils';
 
 describe('levenshteinDistance', () => {
   it('should return 0 for identical strings', () => {

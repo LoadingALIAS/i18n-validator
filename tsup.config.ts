@@ -19,5 +19,5 @@ export default defineConfig({
   loader: {
     ".json": "json",
   },
-  external: ["../data/languages.json", "../data/regions.json", "../data/scripts.json"],
+  external: ["../data/**/*.json"],
 });

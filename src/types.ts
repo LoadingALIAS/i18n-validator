@@ -38,14 +38,17 @@ export interface ValidationFeedback {
       code: string;
       valid: boolean;
       suppressScript?: string;
+      name?: string; // Human-readable name (e.g., "English")
     };
     region?: {
       code: string;
       valid: boolean;
+      name?: string; // Human-readable name (e.g., "United States")
     };
     script?: {
       code: string;
       valid: boolean;
+      name?: string; // Human-readable name (e.g., "Latin")
     };
   };
 }
