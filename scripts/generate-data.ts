@@ -1,3 +1,30 @@
+/**
+ * DATA SOURCE DOCUMENTATION
+ *
+ * This script fetches data from the following authoritative sources:
+ *
+ * 1. IANA Language Subtag Registry:
+ *    - The official registry for BCP 47 language tags
+ *    - Defines language subtags, region subtags, script subtags, etc.
+ *    - URL: https://www.iana.org/assignments/language-subtag-registry/
+ *
+ * 2. ISO 639 Language Codes:
+ *    - ISO 639-2: Maintained by the Library of Congress (the official ISO 639-2 Registration Authority)
+ *    - ISO 639-3: Maintained by SIL International (the official ISO 639-3 Registration Authority)
+ *    - These provide comprehensive language code data including names, bibliographic codes, etc.
+ *
+ * 3. ISO 3166 Country Codes:
+ *    - Official country code information from the UN/ISO datasets
+ *    - Includes alpha-2, alpha-3, and numeric codes along with official names
+ *
+ * 4. ISO 15924 Script Codes:
+ *    - Maintained by the Unicode Consortium
+ *    - Provides standardized script codes and names
+ *
+ * Version information is extracted from each source when available and included
+ * in the generated manifests for traceability.
+ */
+
 // Generates individual JSON files for languages, regions, and scripts from IANA and ISO sources
 // Output structure:
 // - src/data/languages/{code}.json: Individual language files
@@ -28,14 +55,29 @@ const DATA_SOURCES = {
   IANA_REGISTRY: "https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry",
 
   // ISO 639 (languages)
-  ISO639_2: "https://raw.githubusercontent.com/mamantoha/iso_codes/main/data/iso_639-2.json",
-  ISO639_3: "https://raw.githubusercontent.com/bbenno/languages/master/data/iso-639-3.tsv",
+  // Using the Library of Congress dataset for ISO 639 language codes
+  // The Library of Congress is the official ISO 639-2 Registration Authority
+  ISO639_2: "https://www.loc.gov/standards/iso639-2/ISO-639-2_utf-8.txt",
+  // Using SIL International (the official ISO 639-3 Registration Authority) data
+  ISO639_3: "https://iso639-3.sil.org/sites/iso639-3/files/downloads/iso-639-3.tab",
 
   // ISO 3166 (regions)
-  ISO3166: "https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.json",
+  // Official dataset maintained through UN/ISO relationship
+  ISO3166: "https://github.com/datasets/country-codes/raw/master/data/country-codes.csv",
 
   // ISO 15924 (scripts)
+  // Official Unicode registry for ISO 15924 script codes
   ISO15924: "https://www.unicode.org/iso15924/iso15924.txt",
+};
+
+// Data source version tracking
+// These will be populated during fetching and displayed in manifests
+const DATA_VERSIONS = {
+  IANA_REGISTRY: "",
+  ISO639_2: "",
+  ISO639_3: "",
+  ISO3166: "",
+  ISO15924: "",
 };
 
 // Helper to generate normalized aliases from data fields
@@ -80,10 +122,13 @@ function generateAliases(fields: string[]): string[] {
   return Array.from(aliases);
 }
 
-interface ISO639_2_Entry {
-  alpha_2?: string;
-  alpha_3: string;
+// Type definitions
+interface ISO3166Entry {
   name: string;
+  official_name_en?: string;
+  "alpha-2": string;
+  "alpha-3": string;
+  "country-code": string;
 }
 
 interface IANAEntry {
@@ -97,27 +142,120 @@ interface IANAEntry {
   "Preferred-Value"?: string;
 }
 
-interface ISO3166Entry {
-  name: string;
-  "alpha-2": string;
-  "alpha-3": string;
-  "country-code": string;
+interface ISO15924Entry {
+  code: string; // Alpha-4 code
+  numeric: string; // Numeric code
+  name: string; // English name
+  pva?: string | undefined; // Property Value Alias (short name)
+  date: string; // Date added
 }
 
+/**
+ * Extract version/date information from IANA Registry data
+ */
+function extractIANAVersion(content: string): string {
+  const firstLine = content.split("\n")[0];
+  const dateMatch = firstLine.match(/File-Date: (\d{4}-\d{2}-\d{2})/);
+  return dateMatch ? dateMatch[1] : "unknown";
+}
+
+/**
+ * Fetch and parse ISO 3166 country data from official sources
+ */
 async function getISO3166Data(): Promise<Record<string, ISO3166Entry>> {
   try {
-    const response = await fetch(DATA_SOURCES.ISO3166);
-    const data = (await response.json()) as ISO3166Entry[];
-    return data.reduce(
-      (acc, entry) => {
-        acc[entry["alpha-2"]] = entry;
-        return acc;
-      },
-      {} as Record<string, ISO3166Entry>,
-    );
+    const response = await axios.get(DATA_SOURCES.ISO3166);
+
+    // Extract a version or date from the response if possible
+    const lastModified = response.headers["last-modified"];
+    if (lastModified) {
+      DATA_VERSIONS.ISO3166 = new Date(lastModified).toISOString().split("T")[0];
+    }
+
+    // Parse CSV content
+    const csvContent = response.data;
+    const lines = csvContent.split("\n");
+    const headers = lines[0].split(",");
+
+    const alphaIdx = headers.findIndex((h: string) => h === "ISO3166-1-Alpha-2");
+    const alpha3Idx = headers.findIndex((h: string) => h === "ISO3166-1-Alpha-3");
+    const numericIdx = headers.findIndex((h: string) => h === "ISO3166-1-numeric");
+    const nameIdx = headers.findIndex((h: string) => h === "CLDR display name");
+    const officialNameIdx = headers.findIndex((h: string) => h === "official_name_en");
+
+    const data: Record<string, ISO3166Entry> = {};
+
+    for (let i = 1; i < lines.length; i++) {
+      if (!lines[i].trim()) continue;
+
+      const values = lines[i].split(",");
+      const cleanValue = (val: string) => val.replace(/^"(.*)"$/, "$1");
+
+      const alpha2 = cleanValue(values[alphaIdx]);
+      if (!alpha2 || alpha2.length !== 2) continue;
+
+      data[alpha2] = {
+        "alpha-2": alpha2,
+        "alpha-3": cleanValue(values[alpha3Idx]),
+        "country-code": cleanValue(values[numericIdx]),
+        name: cleanValue(values[nameIdx]),
+      };
+
+      // Add official name if available
+      const officialName = cleanValue(values[officialNameIdx]);
+      if (officialName) {
+        data[alpha2].official_name_en = officialName;
+      }
+    }
+
+    return data;
   } catch (error) {
     console.error("Error fetching ISO 3166 data:", error);
     return {};
+  }
+}
+
+/**
+ * Parse the ISO 15924 text file from Unicode
+ * Format described at: https://www.unicode.org/iso15924/
+ */
+async function parseISO15924Data(): Promise<Map<string, ISO15924Entry>> {
+  try {
+    const response = await fetch(DATA_SOURCES.ISO15924);
+    const text = await response.text();
+    const scriptMap = new Map<string, ISO15924Entry>();
+
+    // Extract version date from header comments
+    const dateMatch = text.match(/Date: (\d{4}-\d{2}-\d{2})/);
+    if (dateMatch) {
+      DATA_VERSIONS.ISO15924 = dateMatch[1];
+    }
+
+    // Process line by line, skipping comments and header
+    const lines = text.split("\n");
+    for (const line of lines) {
+      // Skip comments and empty lines
+      if (line.startsWith("#") || line.trim() === "") continue;
+
+      // Parse the tab-delimited format
+      const parts = line.split(";").map((part) => part.trim());
+      if (parts.length < 4) continue;
+
+      const [code, numeric, name, pva, date] = parts;
+
+      scriptMap.set(code, {
+        code,
+        numeric,
+        name,
+        pva: pva || undefined,
+        date,
+      });
+    }
+
+    return scriptMap;
+  } catch (error) {
+    console.error("Error fetching ISO 15924 data:", error);
+    return new Map();
   }
 }
 
@@ -126,11 +264,15 @@ async function parseIANARegistry(content: string): Promise<{
   regions: Record<string, RegionData>;
   scripts: Record<string, ScriptData>;
 }> {
+  // Extract IANA version
+  DATA_VERSIONS.IANA_REGISTRY = extractIANAVersion(content);
+
   const entries = content.split("%%").slice(1); // Skip file date
   const languages: Record<string, LanguageData> = {};
   const regions: Record<string, RegionData> = {};
   const scripts: Record<string, ScriptData> = {};
   const iso3166Data = await getISO3166Data();
+  const iso15924Data = await parseISO15924Data();
 
   for (const entry of entries) {
     const lines = entry.trim().split("\n");
@@ -211,46 +353,119 @@ async function parseIANARegistry(content: string): Promise<{
       case "script":
         if (data.Subtag.length === 4) {
           const descriptions = Array.isArray(data.Description) ? data.Description : [data.Description || ""];
-          scripts[data.Subtag] = {
-            name: descriptions[0] || "",
-            code: data.Subtag,
-            aliases: generateAliases([...descriptions, data.Subtag]),
+          const scriptCode = data.Subtag;
+          const iso15924Entry = iso15924Data.get(scriptCode);
+
+          // Prioritize ISO 15924 data but enrich with IANA descriptions
+          const name = iso15924Entry?.name || descriptions[0] || "";
+
+          // Combine all possible aliases
+          const aliasFields = [
+            ...descriptions.filter((d): d is string => typeof d === "string"),
+            scriptCode,
+            iso15924Entry?.pva,
+            name,
+          ].filter((field): field is string => typeof field === "string");
+
+          scripts[scriptCode] = {
+            name,
+            code: scriptCode,
+            aliases: generateAliases(aliasFields),
           };
         }
         break;
     }
   }
 
+  // Process ISO 15924 scripts that might not be in IANA
+  for (const [code, data] of iso15924Data.entries()) {
+    // Skip if already processed from IANA
+    if (scripts[code]) continue;
+
+    scripts[code] = {
+      name: data.name,
+      code: data.code,
+      aliases: generateAliases(
+        [data.name, data.code, data.pva].filter((field): field is string => typeof field === "string"),
+      ),
+    };
+  }
+
   return { languages, regions, scripts };
 }
 
+/**
+ * Fetch and parse ISO 639-2 and ISO 639-3 language data from official sources
+ */
 async function fetchISO639Data(existingLanguages: Record<string, LanguageData>): Promise<Record<string, LanguageData>> {
   try {
-    const [{ data: iso2Data }, { data: iso3Raw }] = await Promise.all([
-      axios.get<{ "639-2": ISO639_2_Entry[] }>(DATA_SOURCES.ISO639_2),
-      axios.get<string>(DATA_SOURCES.ISO639_3),
+    const [iso2Response, iso3Response] = await Promise.all([
+      axios.get(DATA_SOURCES.ISO639_2, { responseType: "text" }),
+      axios.get(DATA_SOURCES.ISO639_3, { responseType: "text" }),
     ]);
 
-    // Process ISO 639-2 data
-    for (const entry of iso2Data["639-2"]) {
-      if (entry.alpha_2) {
-        const lang = existingLanguages[entry.alpha_2.toLowerCase()];
+    // Extract version info if available
+    const iso2LastModified = iso2Response.headers["last-modified"];
+    if (iso2LastModified) {
+      DATA_VERSIONS.ISO639_2 = new Date(iso2LastModified).toISOString().split("T")[0];
+    }
+
+    const iso3LastModified = iso3Response.headers["last-modified"];
+    if (iso3LastModified) {
+      DATA_VERSIONS.ISO639_3 = new Date(iso3LastModified).toISOString().split("T")[0];
+    }
+
+    // Process ISO 639-2 data (Library of Congress format)
+    // Format: ISO639-2|ISO639-1|English name|French name
+    const iso2Lines = iso2Response.data.split("\n");
+    for (const line of iso2Lines) {
+      if (!line.trim()) continue;
+
+      const [iso639_2, iso639_1, englishName] = line.split("|");
+
+      if (iso639_1) {
+        const lang = existingLanguages[iso639_1.toLowerCase()];
         if (lang) {
-          lang.iso639_2 = entry.alpha_3;
+          lang.iso639_2 = iso639_2;
           // Add ISO 639-2 code to aliases
-          lang.aliases = generateAliases([...lang.aliases, entry.alpha_3]);
+          lang.aliases = generateAliases([...lang.aliases, iso639_2]);
+
+          // If the name is more complete from ISO 639-2, use it
+          if (englishName && (!lang.name || lang.name.length < englishName.length)) {
+            lang.name = englishName;
+            // Add the full name to aliases too
+            lang.aliases = generateAliases([...lang.aliases, englishName]);
+          }
         }
       }
     }
 
-    // Process ISO 639-3 data
-    const lines = iso3Raw.split("\n").slice(1); // skip header
-    for (const line of lines) {
-      const [id, _part2b, _part2t, part1] = line.split("\t");
+    // Process ISO 639-3 data (SIL International format)
+    // Tab-delimited with header
+    const iso3Lines = iso3Response.data.split("\n");
+    // Skip header
+    const iso3Data = iso3Lines.slice(1);
+
+    for (const line of iso3Data) {
+      if (!line.trim()) continue;
+
+      const fields = line.split("\t");
+      if (fields.length < 7) continue;
+
+      const [id, part1, _part2b, _part2t, _name, scope] = fields;
+
       if (part1) {
         const lang = existingLanguages[part1.toLowerCase()];
         if (lang) {
           lang.iso639_3 = id;
+
+          // Add scope information
+          if (scope === "M") {
+            lang.scope = "macrolanguage";
+          } else if (scope === "S") {
+            lang.scope = "special";
+          }
+
           // Add ISO 639-3 code to aliases
           lang.aliases = generateAliases([...lang.aliases, id]);
         }
@@ -284,18 +499,31 @@ async function writeIndividualFiles(data: {
       total: 0,
       lastUpdated: new Date().toISOString(),
       dataSource: "IANA Language Subtag Registry + ISO 639-1/2/3",
+      version: {
+        iana: DATA_VERSIONS.IANA_REGISTRY,
+        iso639_2: DATA_VERSIONS.ISO639_2,
+        iso639_3: DATA_VERSIONS.ISO639_3,
+      },
     },
     regions: {
       codes: [] as string[],
       total: 0,
       lastUpdated: new Date().toISOString(),
       dataSource: "IANA Language Subtag Registry + ISO 3166-1",
+      version: {
+        iana: DATA_VERSIONS.IANA_REGISTRY,
+        iso3166: DATA_VERSIONS.ISO3166,
+      },
     },
     scripts: {
       codes: [] as string[],
       total: 0,
       lastUpdated: new Date().toISOString(),
       dataSource: "IANA Language Subtag Registry + ISO 15924",
+      version: {
+        iana: DATA_VERSIONS.IANA_REGISTRY,
+        iso15924: DATA_VERSIONS.ISO15924,
+      },
     },
   };
 

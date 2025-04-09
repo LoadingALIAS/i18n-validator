@@ -39,7 +39,8 @@
     "check:fix:all": "biome check --write --unsafe",
     "typecheck": "tsc --noEmit",
     "clean": "git clean -xdf dist node_modules coverage .cache",
-    "prepare": "husky"
+    "prepare": "husky",
+    "cli": "tsx cli/src/index.ts"
   },
   "keywords": [
     "i18n",
@@ -60,10 +61,12 @@
   "license": "MIT",
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
+    "@clack/prompts": "^0.10.1",
     "@types/node": "^22.14.0",
     "@vitest/coverage-v8": "^3.1.1",
     "@vitest/ui": "^3.1.1",
     "axios": "^1.8.4",
+    "commander": "^13.1.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.0",
     "tsup": "^8.4.0",

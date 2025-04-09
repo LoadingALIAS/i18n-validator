@@ -43,6 +43,11 @@ Thumbs.db
 coverage/
 vitest-coverage/
 *.lcov
+*cli/
+
+# Docs
+docs/assets/
+docs
 
 # Generated Types
 types/
