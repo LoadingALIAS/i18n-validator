@@ -54,7 +54,7 @@ vi.mock('../../utils/test-utils', async () => {
 Only replicate logic from production code when absolutely necessary for testing. In most cases, prefer to:
 
 1. Mock the production function
-2. Import and use the actual production function 
+2. Import and use the actual production function
 3. If needed, create a test-specific version with a clear suffix (e.g., `testComposeBCP47`)
 
 ### 4. Document Test Utilities
@@ -118,4 +118,4 @@ Add to the test utilities when:
 
 ---
 
-Following these patterns will help maintain a high-quality test suite without compromising the production bundle size or performance. 
+Following these patterns will help maintain a high-quality test suite without compromising the production bundle size or performance.

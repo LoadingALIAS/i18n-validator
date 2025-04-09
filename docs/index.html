@@ -3,477 +3,633 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>i18n-validator Live Demo</title>
-  <script src="https://unpkg.com/i18n-validator@latest"></script>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      line-height: 1.6;
-      color: #333;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    h1 {
-      color: #0066cc;
-      margin-bottom: 10px;
-    }
-    .subtitle {
-      color: #666;
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-    }
-    .demo-section {
-      background-color: #f9f9f9;
-      border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 30px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: bold;
-    }
-    input, select {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 16px;
-      margin-bottom: 15px;
-    }
-    button {
-      background-color: #0066cc;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s;
-    }
-    button:hover {
-      background-color: #0052a3;
-    }
-    .result-card {
-      margin-top: 20px;
-      padding: 15px;
-      border-radius: 4px;
-      background-color: white;
-      border-left: 4px solid #0066cc;
-    }
-    .invalid {
-      border-left-color: #cc3300;
-    }
-    .result-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-    .result-badge {
-      display: inline-block;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 14px;
-      font-weight: bold;
-    }
-    .valid-badge {
-      background-color: #e6f7e6;
-      color: #2d862d;
-    }
-    .invalid-badge {
-      background-color: #ffe6e6;
-      color: #cc3300;
-    }
-    .result-details {
-      margin-top: 15px;
-      font-family: monospace;
-      font-size: 14px;
-      background-color: #f5f5f5;
-      padding: 10px;
-      border-radius: 4px;
-      white-space: pre-wrap;
-    }
-    .suggestions {
-      margin-top: 15px;
-    }
-    .suggestions span {
-      display: inline-block;
-      margin-right: 8px;
-      margin-bottom: 8px;
-      background-color: #e6f0ff;
-      padding: 4px 8px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .suggestions span:hover {
-      background-color: #cce0ff;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 40px;
-      color: #666;
-      font-size: 14px;
-    }
-    .loading {
-      text-align: center;
-      padding: 20px;
-      font-style: italic;
-      color: #666;
-    }
-    .configuration {
-      margin-bottom: 30px;
-    }
-    .configuration-title {
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    .checkbox-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 15px;
-    }
-    .checkbox-item {
-      display: flex;
-      align-items: center;
-    }
-    .checkbox-item input {
-      width: auto;
-      margin-right: 5px;
-      margin-bottom: 0;
-    }
-  </style>
+  <title>i18n-validator - Modern Internationalization Code Validation</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <meta name="description" content="Lightweight, tree-shakeable validation for language, region, and script codes - handles messy input like 'english usa' with minimal bundle impact">
 </head>
 <body>
-  <header>
+  <header class="header">
     <h1>i18n-validator</h1>
-    <div class="subtitle">Modern, Lightweight Validation for i18n Codes</div>
+    <p>Lightweight, tree-shakeable validation for language, region, and script codes</p>
+    <div>
+      <a href="https://github.com/YOUR_USERNAME/i18n-validator" class="button secondary">GitHub</a>
+      <a href="https://www.npmjs.com/package/i18n-validator" class="button primary">NPM</a>
+    </div>
   </header>
 
-  <div class="demo-section">
-    <h2>Configuration</h2>
-    <p>Select data to load (we'll dynamically load only what you need):</p>
-    
-    <div class="configuration">
-      <div class="configuration-title">Languages:</div>
-      <div class="checkbox-group" id="language-options">
-        <div class="checkbox-item">
-          <input type="checkbox" id="lang-en" value="en" checked>
-          <label for="lang-en">English (en)</label>
-        </div>
-        <div class="checkbox-item">
-          <input type="checkbox" id="lang-es" value="es" checked>
-          <label for="lang-es">Spanish (es)</label>
-        </div>
-        <div class="checkbox-item">
-          <input type="checkbox" id="lang-fr" value="fr" checked>
-          <label for="lang-fr">French (fr)</label>
-        </div>
-        <div class="checkbox-item">
-          <input type="checkbox" id="lang-de" value="de" checked>
-          <label for="lang-de">German (de)</label>
-        </div>
-        <div class="checkbox-item">
-          <input type="checkbox" id="lang-zh" value="zh" checked>
-          <label for="lang-zh">Chinese (zh)</label>
-        </div>
-        <div class="checkbox-item">
-          <input type="checkbox" id="lang-ja" value="ja" checked>
-          <label for="lang-ja">Japanese (ja)</label>
-        </div>
+  <section class="intro">
+    <h2>Why i18n-validator?</h2>
+    <div class="features-grid">
+      <div class="feature">
+        <h4>🪶 Tiny Core</h4>
+        <p>Core library is less than 5KB gzipped. Load only the data you need, no bloat.</p>
       </div>
-
-      <div class="configuration-title">Regions:</div>
-      <div class="checkbox-group" id="region-options">
-        <div class="checkbox-item">
-          <input type="checkbox" id="region-US" value="US" checked>
-          <label for="region-US">United States (US)</label>
-        </div>
-        <div class="checkbox-item">
-          <input type="checkbox" id="region-GB" value="GB" checked>
-          <label for="region-GB">United Kingdom (GB)</label>
-        </div>
-        <div class="checkbox-item">
-          <input type="checkbox" id="region-ES" value="ES" checked>
-          <label for="region-ES">Spain (ES)</label>
-        </div>
-        <div class="checkbox-item">
-          <input type="checkbox" id="region-FR" value="FR" checked>
-          <label for="region-FR">France (FR)</label>
-        </div>
-        <div class="checkbox-item">
-          <input type="checkbox" id="region-DE" value="DE" checked>
-          <label for="region-DE">Germany (DE)</label>
-        </div>
-        <div class="checkbox-item">
-          <input type="checkbox" id="region-CN" value="CN" checked>
-          <label for="region-CN">China (CN)</label>
-        </div>
-        <div class="checkbox-item">
-          <input type="checkbox" id="region-JP" value="JP" checked>
-          <label for="region-JP">Japan (JP)</label>
-        </div>
+      <div class="feature">
+        <h4>🧠 Smart Matching</h4>
+        <p>Handles messy input like "english", "german", "chinese traditional" with data-driven fuzzy matching.</p>
       </div>
-
-      <div class="configuration-title">Scripts:</div>
-      <div class="checkbox-group" id="script-options">
-        <div class="checkbox-item">
-          <input type="checkbox" id="script-Latn" value="Latn" checked>
-          <label for="script-Latn">Latin (Latn)</label>
-        </div>
-        <div class="checkbox-item">
-          <input type="checkbox" id="script-Hans" value="Hans" checked>
-          <label for="script-Hans">Simplified Chinese (Hans)</label>
-        </div>
-        <div class="checkbox-item">
-          <input type="checkbox" id="script-Hant" value="Hant" checked>
-          <label for="script-Hant">Traditional Chinese (Hant)</label>
-        </div>
-        <div class="checkbox-item">
-          <input type="checkbox" id="script-Jpan" value="Jpan" checked>
-          <label for="script-Jpan">Japanese (Jpan)</label>
-        </div>
-        <div class="checkbox-item">
-          <input type="checkbox" id="script-Cyrl" value="Cyrl" checked>
-          <label for="script-Cyrl">Cyrillic (Cyrl)</label>
-        </div>
-        <div class="checkbox-item">
-          <input type="checkbox" id="script-Arab" value="Arab" checked>
-          <label for="script-Arab">Arabic (Arab)</label>
-        </div>
+      <div class="feature">
+        <h4>📏 Standards-Compliant</h4>
+        <p>Built on ISO-639-1/2/3, ISO-3166-1/2, ISO-15924, and BCP-47 standards with correct tag composition.</p>
       </div>
-
-      <div class="configuration-title">Predefined Groups:</div>
-      <div class="checkbox-group" id="group-options">
-        <div class="checkbox-item">
-          <input type="checkbox" id="group-common-web" value="common-web">
-          <label for="group-common-web">Common Web Languages</label>
-        </div>
-        <div class="checkbox-item">
-          <input type="checkbox" id="group-eu" value="eu">
-          <label for="group-eu">European Union</label>
-        </div>
+      <div class="feature">
+        <h4>🌲 Tree-Shakeable</h4>
+        <p>Dynamic per-file data loading ensures minimal bundle impact - import only what you use.</p>
       </div>
-
-      <button id="configure-button">Configure Validator</button>
     </div>
+  </section>
 
-    <div id="configuration-status" class="loading">Ready to configure...</div>
+  <div class="tabs">
+    <div class="tab active" data-tab="demo">Demo</div>
+    <div class="tab" data-tab="usage">Usage Examples</div>
+    <div class="tab" data-tab="bundle">Bundle Size</div>
   </div>
 
-  <div class="demo-section">
-    <h2>Validate a BCP 47 language tag</h2>
-    <p>Enter a language tag (e.g. "en-US", "zh-Hans-CN") or fuzzy input (e.g. "english", "chinese simplified"):</p>
+  <div class="tab-content active" data-tab="demo">
+    <section class="demo-container">
+      <h3>Interactive Demo</h3>
+      <p>See the library in action. First, configure which data to load:</p>
+      
+      <div class="config-area">
+        <h4>1. Configuration</h4>
+        <div class="config-selection">
+          <fieldset>
+            <legend>Choose Languages</legend>
+            <label><input type="checkbox" class="lang-checkbox" value="en"> English (en)</label>
+            <label><input type="checkbox" class="lang-checkbox" value="fr"> French (fr)</label>
+            <label><input type="checkbox" class="lang-checkbox" value="de"> German (de)</label>
+            <label><input type="checkbox" class="lang-checkbox" value="es"> Spanish (es)</label>
+            <label><input type="checkbox" class="lang-checkbox" value="zh"> Chinese (zh)</label>
+            <label><input type="checkbox" class="lang-checkbox" value="ja"> Japanese (ja)</label>
+          </fieldset>
+          
+          <fieldset>
+            <legend>Choose Regions</legend>
+            <label><input type="checkbox" class="region-checkbox" value="US"> United States (US)</label>
+            <label><input type="checkbox" class="region-checkbox" value="GB"> United Kingdom (GB)</label>
+            <label><input type="checkbox" class="region-checkbox" value="FR"> France (FR)</label>
+            <label><input type="checkbox" class="region-checkbox" value="DE"> Germany (DE)</label>
+            <label><input type="checkbox" class="region-checkbox" value="ES"> Spain (ES)</label>
+            <label><input type="checkbox" class="region-checkbox" value="CN"> China (CN)</label>
+          </fieldset>
+          
+          <fieldset>
+            <legend>Choose Scripts</legend>
+            <label><input type="checkbox" class="script-checkbox" value="Latn"> Latin (Latn)</label>
+            <label><input type="checkbox" class="script-checkbox" value="Hans"> Han Simplified (Hans)</label>
+            <label><input type="checkbox" class="script-checkbox" value="Hant"> Han Traditional (Hant)</label>
+            <label><input type="checkbox" class="script-checkbox" value="Cyrl"> Cyrillic (Cyrl)</label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Predefined Groups</legend>
+            <label><input type="checkbox" class="group-checkbox" value="common-web"> Common Web</label>
+            <label><input type="checkbox" class="group-checkbox" value="eu"> European Union</label>
+            <label><input type="checkbox" class="group-checkbox" value="cjk"> CJK Languages</label>
+          </fieldset>
+        </div>
+        
+        <p>Selected Configuration:</p>
+        <div id="selected-config" class="result-display">
+          <div id="selected-languages"></div>
+          <div id="selected-regions"></div>
+          <div id="selected-scripts"></div>
+          <div id="selected-groups"></div>
+        </div>
+        
+        <button id="configure-button" class="primary">Configure</button>
+        <p id="config-status"></p>
+      </div>
+      
+      <div class="validate-area">
+        <h4>2. Try It Out</h4>
+        <div class="examples">
+          <p>Try these examples:</p>
+          <button class="example-button" data-example="english">english</button>
+          <button class="example-button" data-example="en-US">en-US</button>
+          <button class="example-button" data-example="chinese simplified">chinese simplified</button>
+          <button class="example-button" data-example="german">german</button>
+          <button class="example-button" data-example="español">español</button>
+          <button class="example-button" data-example="french canada">french canada</button>
+        </div>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="input-text">Enter a language, region, script code, or BCP 47 tag:</label>
+            <input type="text" id="input-text" placeholder="e.g., 'english', 'en-US', 'zh-Hans-CN'">
+          </div>
+          <div class="form-group">
+            <label for="validation-type">Validation Type:</label>
+            <select id="validation-type">
+              <option value="any">Auto-detect</option>
+              <option value="language">Language</option>
+              <option value="region">Region</option>
+              <option value="script">Script</option>
+              <option value="bcp47">BCP 47 Tag</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="button-group">
+          <button id="parse-button" class="primary">Parse</button>
+          <button id="validate-button" class="primary">Validate</button>
+          <button id="suggest-button" class="primary">Suggest</button>
+        </div>
+        
+        <div id="result-container" class="result-display">
+          <p>Results will appear here after validation.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <div class="tab-content" data-tab="usage">
+    <section class="demo-container">
+      <h3>How to Use</h3>
+      
+      <h4>Installation</h4>
+      <div class="code-sample">
+npm install i18n-validator
+# or
+yarn add i18n-validator
+# or
+pnpm add i18n-validator
+      </div>
+      
+      <h4>Basic Usage</h4>
+      <div class="code-sample">
+import { configure, parse, validate, suggest } from 'i18n-validator';
+
+// First, configure which data to load
+await configure({
+  languages: ['en', 'fr', 'es'],
+  regions: ['US', 'FR', 'ES'],
+  scripts: ['Latn'],
+  // Or use predefined groups
+  // groups: ['common-web']
+});
+
+// Parse input into BCP 47 components
+const result = parse('english us');
+console.log(result);
+// {
+//   isValid: true,
+//   normalized: 'en-US',
+//   details: {
+//     language: { code: 'en', valid: true, name: 'English' },
+//     region: { code: 'US', valid: true, name: 'United States' },
+//     script: null
+//   },
+//   ...
+// }
+
+// Simple validation
+const isValid = validate('en', 'language'); // true
+
+// Get suggestions for ambiguous input
+const suggestions = suggest('german', { type: 'language' });
+// ['de', ...]
+      </div>
+      
+      <h4>Advanced Usage</h4>
+      <div class="code-sample">
+// Using predefined groups
+await configure({
+  groups: ['common-web', 'eu']
+});
+
+// Validate BCP 47 tags with detailed feedback
+const validation = validateBCP47('zh-Hans-CN');
+console.log(validation);
+// {
+//   isValid: true,
+//   normalized: 'zh-Hans-CN',
+//   details: {
+//     language: { code: 'zh', valid: true, name: 'Chinese' },
+//     region: { code: 'CN', valid: true, name: 'China' },
+//     script: { code: 'Hans', valid: true, name: 'Simplified Han' }
+//   },
+//   ...
+// }
+
+// Get suggestions for BCP 47 tags
+const tagSuggestions = suggestBCP47('english france');
+console.log(tagSuggestions);
+// {
+//   suggestions: ['en-FR', ...],
+//   helpText: 'Did you mean one of these?',
+//   ...
+// }
+      </div>
+    </section>
+  </div>
+  
+  <div class="tab-content" data-tab="bundle">
+    <section class="demo-container">
+      <h3>Bundle Size Impact</h3>
+      
+      <p>One of the key advantages of i18n-validator is its minimal bundle size impact. The core library is tiny, and data is loaded dynamically on demand.</p>
+      
+      <div class="bundle-info">
+        <h4>Zero Data Bundling</h4>
+        <p>The core library is less than <strong>5KB gzipped</strong>.</p>
+        <p>Data files are imported dynamically only when needed:</p>
+        <ul>
+          <li>~400 bytes per language data file</li>
+          <li>~400 bytes per region data file</li>
+          <li>~400 bytes per script data file</li>
+        </ul>
+        <p>This means your application only loads the specific data it needs, not the entire dataset.</p>
+      </div>
+      
+      <div class="comparison-grid">
+        <div>
+          <h4>Traditional Approach</h4>
+          <div class="json-display">
+// Entire dataset bundled into your app
+import { validate } from 'traditional-i18n-lib';
+// 25-30KB+ for all data bundled in
+
+validate('en'); // Uses a tiny fraction of bundled data
+          </div>
+        </div>
+        <div>
+          <h4>i18n-validator Approach</h4>
+          <div class="json-display">
+// Core library with dynamic data loading
+import { configure, validate } from 'i18n-validator';
+// ~5KB for core logic
+
+// Load only what you need
+await configure({
+  languages: ['en', 'fr']  // ~800 bytes total
+});
+
+validate('en'); // Uses only loaded data
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <hr>
+    <p>&copy; 2023 i18n-validator. Released under the MIT License.</p>
+  </footer>
+
+  <script type="module">
+    // Use unpkg CDN to load the library
+    import { configure, parse, validate, validateBCP47, suggest, suggestBCP47 } from 'https://unpkg.com/i18n-validator/dist/index.js';
     
-    <div>
-      <label for="input-tag">Language Tag or Description:</label>
-      <input type="text" id="input-tag" placeholder="e.g. en-US, english usa, zh-Hans" />
-      
-      <button id="parse-button" disabled>Parse</button>
-    </div>
+    // UI state
+    let isConfigured = false;
+    let selectedLanguages = [];
+    let selectedRegions = [];
+    let selectedScripts = [];
+    let selectedGroups = [];
     
-    <div id="result-container"></div>
-  </div>
-
-  <div class="footer">
-    <p><a href="https://github.com/YOUR_USERNAME/i18n-validator" target="_blank">i18n-validator on GitHub</a></p>
-    <p>Bundle Size: &lt;5kB gzipped (core) | This demo only loads data you select</p>
-  </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const i18nValidator = window.i18nValidator;
-      const configureButton = document.getElementById('configure-button');
-      const parseButton = document.getElementById('parse-button');
-      const inputTag = document.getElementById('input-tag');
-      const resultContainer = document.getElementById('result-container');
-      const configStatus = document.getElementById('configuration-status');
-      
-      // Handles configuration
-      configureButton.addEventListener('click', async function() {
-        configStatus.textContent = 'Configuring validator...';
-        configStatus.className = 'loading';
+    // UI Elements
+    const configButton = document.getElementById('configure-button');
+    const parseButton = document.getElementById('parse-button');
+    const validateButton = document.getElementById('validate-button');
+    const suggestButton = document.getElementById('suggest-button');
+    const inputText = document.getElementById('input-text');
+    const validationType = document.getElementById('validation-type');
+    const resultContainer = document.getElementById('result-container');
+    const configStatus = document.getElementById('config-status');
+    const langCheckboxes = document.querySelectorAll('.lang-checkbox');
+    const regionCheckboxes = document.querySelectorAll('.region-checkbox');
+    const scriptCheckboxes = document.querySelectorAll('.script-checkbox');
+    const groupCheckboxes = document.querySelectorAll('.group-checkbox');
+    const selectedLanguagesEl = document.getElementById('selected-languages');
+    const selectedRegionsEl = document.getElementById('selected-regions');
+    const selectedScriptsEl = document.getElementById('selected-scripts');
+    const selectedGroupsEl = document.getElementById('selected-groups');
+    const exampleButtons = document.querySelectorAll('.example-button');
+    const tabs = document.querySelectorAll('.tab');
+    
+    // Initialize tabs
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs and contents
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
         
-        const languages = getSelectedValues('language-options');
-        const regions = getSelectedValues('region-options');
-        const scripts = getSelectedValues('script-options');
-        const groups = getSelectedValues('group-options');
+        // Add active class to clicked tab and corresponding content
+        const tabName = tab.getAttribute('data-tab');
+        tab.classList.add('active');
+        document.querySelector(`.tab-content[data-tab="${tabName}"]`).classList.add('active');
+      });
+    });
+    
+    // Example buttons
+    exampleButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        inputText.value = button.getAttribute('data-example');
+      });
+    });
+    
+    // Update selected config display
+    function updateSelectedConfig() {
+      selectedLanguagesEl.innerHTML = '<strong>Languages:</strong> ' + 
+        (selectedLanguages.length ? selectedLanguages.map(l => `<span class="badge">${l}</span>`).join('') : 'None');
+      
+      selectedRegionsEl.innerHTML = '<strong>Regions:</strong> ' + 
+        (selectedRegions.length ? selectedRegions.map(r => `<span class="badge">${r}</span>`).join('') : 'None');
+      
+      selectedScriptsEl.innerHTML = '<strong>Scripts:</strong> ' + 
+        (selectedScripts.length ? selectedScripts.map(s => `<span class="badge">${s}</span>`).join('') : 'None');
+      
+      selectedGroupsEl.innerHTML = '<strong>Groups:</strong> ' + 
+        (selectedGroups.length ? selectedGroups.map(g => `<span class="badge">${g}</span>`).join('') : 'None');
+    }
+    
+    // Selection listeners
+    function updateSelections() {
+      selectedLanguages = Array.from(langCheckboxes)
+        .filter(cb => cb.checked)
+        .map(cb => cb.value);
+      
+      selectedRegions = Array.from(regionCheckboxes)
+        .filter(cb => cb.checked)
+        .map(cb => cb.value);
+      
+      selectedScripts = Array.from(scriptCheckboxes)
+        .filter(cb => cb.checked)
+        .map(cb => cb.value);
+      
+      selectedGroups = Array.from(groupCheckboxes)
+        .filter(cb => cb.checked)
+        .map(cb => cb.value);
+      
+      updateSelectedConfig();
+    }
+    
+    langCheckboxes.forEach(cb => cb.addEventListener('change', updateSelections));
+    regionCheckboxes.forEach(cb => cb.addEventListener('change', updateSelections));
+    scriptCheckboxes.forEach(cb => cb.addEventListener('change', updateSelections));
+    groupCheckboxes.forEach(cb => cb.addEventListener('change', updateSelections));
+    
+    // Set some defaults
+    document.querySelector('.lang-checkbox[value="en"]').checked = true;
+    document.querySelector('.region-checkbox[value="US"]').checked = true;
+    document.querySelector('.script-checkbox[value="Latn"]').checked = true;
+    updateSelections();
+    
+    // Configure button
+    configButton.addEventListener('click', async () => {
+      try {
+        configButton.classList.add('loading');
+        configButton.textContent = 'Configuring...';
+        configStatus.textContent = 'Loading data...';
+        configStatus.className = '';
         
-        try {
-          await i18nValidator.configure({
-            languages,
-            regions,
-            scripts,
-            groups
-          });
-          
-          parseButton.disabled = false;
-          configStatus.textContent = 'Validator configured successfully!';
-          configStatus.className = 'result-card';
-          
-          const loadedItems = [];
-          if (languages.length) loadedItems.push(`${languages.length} languages`);
-          if (regions.length) loadedItems.push(`${regions.length} regions`);
-          if (scripts.length) loadedItems.push(`${scripts.length} scripts`);
-          if (groups.length) loadedItems.push(`${groups.length} groups`);
-          
-          if (loadedItems.length) {
-            configStatus.textContent += ` Loaded: ${loadedItems.join(', ')}`;
-          }
-        } catch (error) {
-          configStatus.textContent = `Error configuring validator: ${error.message}`;
-          configStatus.className = 'result-card invalid';
-        }
-      });
-      
-      // Handles parse button click
-      parseButton.addEventListener('click', function() {
-        parseInput();
-      });
-      
-      // Also parse on Enter key
-      inputTag.addEventListener('keyup', function(event) {
-        if (event.key === 'Enter' && !parseButton.disabled) {
-          parseInput();
-        }
-      });
-      
-      function parseInput() {
-        const input = inputTag.value.trim();
-        if (!input) return;
+        // Create config options
+        const configOptions = {};
         
-        try {
-          const result = i18nValidator.parse(input);
-          displayResult(result);
-        } catch (error) {
-          displayError(error);
+        if (selectedLanguages.length > 0) {
+          configOptions.languages = selectedLanguages;
         }
+        
+        if (selectedRegions.length > 0) {
+          configOptions.regions = selectedRegions;
+        }
+        
+        if (selectedScripts.length > 0) {
+          configOptions.scripts = selectedScripts;
+        }
+        
+        if (selectedGroups.length > 0) {
+          configOptions.groups = selectedGroups;
+        }
+        
+        // Call configure
+        await configure(configOptions);
+        
+        isConfigured = true;
+        configStatus.textContent = 'Configuration successful! You can now use the library.';
+        configStatus.className = 'valid';
+      } catch (error) {
+        configStatus.textContent = `Configuration failed: ${error.message}`;
+        configStatus.className = 'invalid';
+      } finally {
+        configButton.classList.remove('loading');
+        configButton.textContent = 'Configure';
+      }
+    });
+    
+    // Parse button
+    parseButton.addEventListener('click', () => {
+      if (!isConfigured) {
+        resultContainer.innerHTML = '<p class="invalid">Please configure the library first.</p>';
+        return;
       }
       
-      function displayResult(result) {
-        const resultCard = document.createElement('div');
-        resultCard.className = `result-card ${result.isValid ? '' : 'invalid'}`;
+      const input = inputText.value.trim();
+      if (!input) {
+        resultContainer.innerHTML = '<p class="invalid">Please enter a value to parse.</p>';
+        return;
+      }
+      
+      try {
+        const result = parse(input);
         
-        // Create header with status badge
-        const header = document.createElement('div');
-        header.className = 'result-header';
-        
-        const title = document.createElement('h3');
-        title.textContent = result.isValid 
-          ? `Valid: ${result.normalized}` 
-          : 'Invalid Input';
-        
-        const badge = document.createElement('span');
-        badge.className = `result-badge ${result.isValid ? 'valid-badge' : 'invalid-badge'}`;
-        badge.textContent = result.isValid ? 'VALID' : 'INVALID';
-        
-        header.appendChild(title);
-        header.appendChild(badge);
-        resultCard.appendChild(header);
-        
-        // Add help text if available
-        if (result.helpText) {
-          const helpText = document.createElement('p');
-          helpText.textContent = result.helpText;
-          resultCard.appendChild(helpText);
-        }
-        
-        // Add details section
-        if (result.details) {
-          const detailsTitle = document.createElement('div');
-          detailsTitle.textContent = 'Components:';
-          detailsTitle.style.fontWeight = 'bold';
-          resultCard.appendChild(detailsTitle);
+        let html = '';
+        if (result.isValid) {
+          html += `<p class="valid"><strong>Valid!</strong> Normalized tag: <span class="highlight">${result.normalized}</span></p>`;
           
-          const details = document.createElement('div');
-          details.className = 'result-details';
-          
-          const componentsText = [];
+          html += '<h5>Details:</h5><ul>';
           
           if (result.details.language) {
-            const lang = result.details.language;
-            componentsText.push(`Language: ${lang.code}${lang.name ? ` (${lang.name})` : ''} - Valid: ${lang.valid}`);
-          }
-          
-          if (result.details.script) {
-            const script = result.details.script;
-            componentsText.push(`Script: ${script.code}${script.name ? ` (${script.name})` : ''} - Valid: ${script.valid}`);
+            html += `<li><strong>Language:</strong> ${result.details.language.code}${result.details.language.name ? ` (${result.details.language.name})` : ''}</li>`;
           }
           
           if (result.details.region) {
-            const region = result.details.region;
-            componentsText.push(`Region: ${region.code}${region.name ? ` (${region.name})` : ''} - Valid: ${region.valid}`);
+            html += `<li><strong>Region:</strong> ${result.details.region.code}${result.details.region.name ? ` (${result.details.region.name})` : ''}</li>`;
           }
           
-          details.textContent = componentsText.join('\n');
-          resultCard.appendChild(details);
-        }
-        
-        // Add suggestions if available
-        if (result.suggestions && result.suggestions.length > 0) {
-          const suggestionsTitle = document.createElement('div');
-          suggestionsTitle.textContent = 'Suggestions:';
-          suggestionsTitle.style.fontWeight = 'bold';
-          resultCard.appendChild(suggestionsTitle);
+          if (result.details.script) {
+            html += `<li><strong>Script:</strong> ${result.details.script.code}${result.details.script.name ? ` (${result.details.script.name})` : ''}</li>`;
+          }
           
-          const suggestions = document.createElement('div');
-          suggestions.className = 'suggestions';
+          html += '</ul>';
+        } else {
+          html += `<p class="invalid"><strong>Invalid!</strong> ${result.helpText}</p>`;
           
-          result.suggestions.forEach(suggestion => {
-            const suggestionSpan = document.createElement('span');
-            suggestionSpan.textContent = suggestion;
-            suggestionSpan.addEventListener('click', () => {
-              inputTag.value = suggestion;
-              parseInput();
+          if (result.suggestions && result.suggestions.length > 0) {
+            html += '<p>Suggestions:</p><p>';
+            result.suggestions.forEach(suggestion => {
+              html += `<span class="badge suggestion">${suggestion}</span> `;
             });
-            suggestions.appendChild(suggestionSpan);
-          });
-          
-          resultCard.appendChild(suggestions);
+            html += '</p>';
+          }
         }
         
-        // Add to container
-        resultContainer.innerHTML = '';
-        resultContainer.appendChild(resultCard);
+        html += '<h5>Full Result:</h5>';
+        html += `<div class="json-display">${JSON.stringify(result, null, 2)}</div>`;
+        
+        resultContainer.innerHTML = html;
+        
+        // Add click handlers to suggestions
+        document.querySelectorAll('.suggestion').forEach(elem => {
+          elem.addEventListener('click', () => {
+            inputText.value = elem.textContent;
+          });
+        });
+      } catch (error) {
+        resultContainer.innerHTML = `<p class="invalid">Error: ${error.message}</p>`;
+      }
+    });
+    
+    // Validate button
+    validateButton.addEventListener('click', () => {
+      if (!isConfigured) {
+        resultContainer.innerHTML = '<p class="invalid">Please configure the library first.</p>';
+        return;
       }
       
-      function displayError(error) {
-        const errorCard = document.createElement('div');
-        errorCard.className = 'result-card invalid';
-        
-        const header = document.createElement('div');
-        header.className = 'result-header';
-        
-        const title = document.createElement('h3');
-        title.textContent = 'Error';
-        
-        const badge = document.createElement('span');
-        badge.className = 'result-badge invalid-badge';
-        badge.textContent = 'ERROR';
-        
-        header.appendChild(title);
-        header.appendChild(badge);
-        errorCard.appendChild(header);
-        
-        const errorMessage = document.createElement('p');
-        errorMessage.textContent = error.message;
-        errorCard.appendChild(errorMessage);
-        
-        resultContainer.innerHTML = '';
-        resultContainer.appendChild(errorCard);
+      const input = inputText.value.trim();
+      if (!input) {
+        resultContainer.innerHTML = '<p class="invalid">Please enter a value to validate.</p>';
+        return;
       }
       
-      function getSelectedValues(containerId) {
-        const container = document.getElementById(containerId);
-        const checkboxes = container.querySelectorAll('input[type="checkbox"]:checked');
-        return Array.from(checkboxes).map(cb => cb.value);
+      try {
+        const type = validationType.value;
+        let result;
+        
+        if (type === 'bcp47') {
+          result = validateBCP47(input);
+          
+          let html = '';
+          if (result.isValid) {
+            html += `<p class="valid"><strong>Valid BCP 47 tag!</strong> Normalized: <span class="highlight">${result.normalized}</span></p>`;
+          } else {
+            html += `<p class="invalid"><strong>Invalid BCP 47 tag!</strong> ${result.helpText}</p>`;
+            
+            if (result.suggestions && result.suggestions.length > 0) {
+              html += '<p>Suggestions:</p><p>';
+              result.suggestions.forEach(suggestion => {
+                html += `<span class="badge suggestion">${suggestion}</span> `;
+              });
+              html += '</p>';
+            }
+          }
+          
+          html += '<h5>Full Result:</h5>';
+          html += `<div class="json-display">${JSON.stringify(result, null, 2)}</div>`;
+          
+          resultContainer.innerHTML = html;
+        } else {
+          const validationType = type === 'any' ? undefined : type;
+          result = validate(input, validationType);
+          
+          if (typeof result === 'boolean') {
+            if (result) {
+              resultContainer.innerHTML = `<p class="valid"><strong>Valid!</strong> "${input}" is a valid ${type} code.</p>`;
+            } else {
+              resultContainer.innerHTML = `<p class="invalid"><strong>Invalid!</strong> "${input}" is not a valid ${type} code.</p>`;
+            }
+          } else {
+            // It returned a ValidationFeedback object
+            let html = '';
+            if (result.isValid) {
+              html += `<p class="valid"><strong>Valid!</strong> Normalized: <span class="highlight">${result.normalized}</span></p>`;
+            } else {
+              html += `<p class="invalid"><strong>Invalid!</strong> ${result.helpText}</p>`;
+              
+              if (result.suggestions && result.suggestions.length > 0) {
+                html += '<p>Suggestions:</p><p>';
+                result.suggestions.forEach(suggestion => {
+                  html += `<span class="badge suggestion">${suggestion}</span> `;
+                });
+                html += '</p>';
+              }
+            }
+            
+            html += '<h5>Full Result:</h5>';
+            html += `<div class="json-display">${JSON.stringify(result, null, 2)}</div>`;
+            
+            resultContainer.innerHTML = html;
+          }
+        }
+        
+        // Add click handlers to suggestions
+        document.querySelectorAll('.suggestion').forEach(elem => {
+          elem.addEventListener('click', () => {
+            inputText.value = elem.textContent;
+          });
+        });
+      } catch (error) {
+        resultContainer.innerHTML = `<p class="invalid">Error: ${error.message}</p>`;
+      }
+    });
+    
+    // Suggest button
+    suggestButton.addEventListener('click', () => {
+      if (!isConfigured) {
+        resultContainer.innerHTML = '<p class="invalid">Please configure the library first.</p>';
+        return;
+      }
+      
+      const input = inputText.value.trim();
+      if (!input) {
+        resultContainer.innerHTML = '<p class="invalid">Please enter a value to get suggestions for.</p>';
+        return;
+      }
+      
+      try {
+        const type = validationType.value;
+        let result;
+        
+        if (type === 'bcp47' || type === 'any') {
+          result = suggestBCP47(input);
+          
+          let html = '';
+          html += `<p>Suggestions for "${input}":</p>`;
+          
+          if (result.suggestions && result.suggestions.length > 0) {
+            html += '<p>';
+            result.suggestions.forEach(suggestion => {
+              html += `<span class="badge suggestion">${suggestion}</span> `;
+            });
+            html += '</p>';
+          } else {
+            html += '<p>No suggestions found.</p>';
+          }
+          
+          html += '<h5>Full Result:</h5>';
+          html += `<div class="json-display">${JSON.stringify(result, null, 2)}</div>`;
+          
+          resultContainer.innerHTML = html;
+        } else {
+          const options = { type };
+          result = suggest(input, options);
+          
+          let html = '';
+          html += `<p>Suggestions for "${input}" (type: ${type}):</p>`;
+          
+          if (result && result.length > 0) {
+            html += '<p>';
+            result.forEach(suggestion => {
+              html += `<span class="badge suggestion">${suggestion}</span> `;
+            });
+            html += '</p>';
+          } else {
+            html += '<p>No suggestions found.</p>';
+          }
+          
+          resultContainer.innerHTML = html;
+        }
+        
+        // Add click handlers to suggestions
+        document.querySelectorAll('.suggestion').forEach(elem => {
+          elem.addEventListener('click', () => {
+            inputText.value = elem.textContent;
+          });
+        });
+      } catch (error) {
+        resultContainer.innerHTML = `<p class="invalid">Error: ${error.message}</p>`;
       }
     });
   </script>
