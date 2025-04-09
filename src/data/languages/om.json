@@ -1,0 +1,13 @@
+{
+  "name": "Oromo",
+  "iso639_1": "om",
+  "iso639_2": "orm",
+  "iso639_3": "orm",
+  "aliases": [
+    "oromo",
+    "om",
+    "orm"
+  ],
+  "suppressScript": "Latn",
+  "scope": "macrolanguage"
+}

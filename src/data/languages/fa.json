@@ -1,0 +1,13 @@
+{
+  "name": "Persian",
+  "iso639_1": "fa",
+  "iso639_2": "fas",
+  "iso639_3": "fas",
+  "aliases": [
+    "persian",
+    "fa",
+    "fas"
+  ],
+  "suppressScript": "Arab",
+  "scope": "macrolanguage"
+}

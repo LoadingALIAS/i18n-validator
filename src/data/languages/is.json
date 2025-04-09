@@ -1,0 +1,12 @@
+{
+  "name": "Icelandic",
+  "iso639_1": "is",
+  "iso639_2": "isl",
+  "iso639_3": "isl",
+  "aliases": [
+    "icelandic",
+    "is",
+    "isl"
+  ],
+  "suppressScript": "Latn"
+}

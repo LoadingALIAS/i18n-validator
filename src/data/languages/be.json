@@ -1,0 +1,12 @@
+{
+  "name": "Belarusian",
+  "iso639_1": "be",
+  "iso639_2": "bel",
+  "iso639_3": "bel",
+  "aliases": [
+    "belarusian",
+    "be",
+    "bel"
+  ],
+  "suppressScript": "Cyrl"
+}

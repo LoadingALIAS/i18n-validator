@@ -1,0 +1,12 @@
+{
+  "name": "Croatian",
+  "iso639_1": "hr",
+  "iso639_2": "hrv",
+  "iso639_3": "hrv",
+  "aliases": [
+    "croatian",
+    "hr",
+    "hrv"
+  ],
+  "suppressScript": "Latn"
+}

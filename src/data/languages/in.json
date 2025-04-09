@@ -1,0 +1,11 @@
+{
+  "name": "Indonesian",
+  "iso639_1": "in",
+  "iso639_2": "",
+  "iso639_3": "",
+  "aliases": [
+    "indonesian",
+    "in"
+  ],
+  "suppressScript": "Latn"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Zulu",
+  "iso639_1": "zu",
+  "iso639_2": "zul",
+  "iso639_3": "zul",
+  "aliases": [
+    "zulu",
+    "zu",
+    "zul"
+  ],
+  "suppressScript": "Latn"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Spanish",
+  "iso639_1": "es",
+  "iso639_2": "spa",
+  "iso639_3": "spa",
+  "aliases": [
+    "spanish",
+    "castilian",
+    "es",
+    "spa"
+  ],
+  "suppressScript": "Latn"
+}

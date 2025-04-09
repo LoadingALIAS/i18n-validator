@@ -1,0 +1,12 @@
+{
+  "name": "Czech",
+  "iso639_1": "cs",
+  "iso639_2": "ces",
+  "iso639_3": "ces",
+  "aliases": [
+    "czech",
+    "cs",
+    "ces"
+  ],
+  "suppressScript": "Latn"
+}

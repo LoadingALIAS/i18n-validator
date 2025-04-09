@@ -1,0 +1,12 @@
+{
+  "name": "Nauru",
+  "iso639_1": "na",
+  "iso639_2": "nau",
+  "iso639_3": "nau",
+  "aliases": [
+    "nauru",
+    "na",
+    "nau"
+  ],
+  "suppressScript": "Latn"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Inuktitut",
+  "iso639_1": "iu",
+  "iso639_2": "iku",
+  "iso639_3": "iku",
+  "aliases": [
+    "inuktitut",
+    "iu",
+    "iku"
+  ],
+  "scope": "macrolanguage"
+}

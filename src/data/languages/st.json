@@ -1,0 +1,13 @@
+{
+  "name": "Southern Sotho",
+  "iso639_1": "st",
+  "iso639_2": "sot",
+  "iso639_3": "sot",
+  "aliases": [
+    "southern sotho",
+    "southernsotho",
+    "st",
+    "sot"
+  ],
+  "suppressScript": "Latn"
+}

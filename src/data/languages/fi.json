@@ -1,0 +1,12 @@
+{
+  "name": "Finnish",
+  "iso639_1": "fi",
+  "iso639_2": "fin",
+  "iso639_3": "fin",
+  "aliases": [
+    "finnish",
+    "fi",
+    "fin"
+  ],
+  "suppressScript": "Latn"
+}

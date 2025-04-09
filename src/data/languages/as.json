@@ -1,0 +1,12 @@
+{
+  "name": "Assamese",
+  "iso639_1": "as",
+  "iso639_2": "asm",
+  "iso639_3": "asm",
+  "aliases": [
+    "assamese",
+    "as",
+    "asm"
+  ],
+  "suppressScript": "Beng"
+}

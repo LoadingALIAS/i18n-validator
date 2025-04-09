@@ -1,0 +1,12 @@
+{
+  "name": "Latin",
+  "iso639_1": "la",
+  "iso639_2": "lat",
+  "iso639_3": "lat",
+  "aliases": [
+    "latin",
+    "la",
+    "lat"
+  ],
+  "suppressScript": "Latn"
+}

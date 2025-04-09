@@ -1,0 +1,12 @@
+{
+  "name": "Chinese",
+  "iso639_1": "zh",
+  "iso639_2": "zho",
+  "iso639_3": "zho",
+  "aliases": [
+    "chinese",
+    "zh",
+    "zho"
+  ],
+  "scope": "macrolanguage"
+}

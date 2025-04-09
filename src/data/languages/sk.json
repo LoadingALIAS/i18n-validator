@@ -1,0 +1,12 @@
+{
+  "name": "Slovak",
+  "iso639_1": "sk",
+  "iso639_2": "slk",
+  "iso639_3": "slk",
+  "aliases": [
+    "slovak",
+    "sk",
+    "slk"
+  ],
+  "suppressScript": "Latn"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Turkish",
+  "iso639_1": "tr",
+  "iso639_2": "tur",
+  "iso639_3": "tur",
+  "aliases": [
+    "turkish",
+    "tr",
+    "tur"
+  ],
+  "suppressScript": "Latn"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "South Ndebele",
+  "iso639_1": "nr",
+  "iso639_2": "nbl",
+  "iso639_3": "nbl",
+  "aliases": [
+    "south ndebele",
+    "southndebele",
+    "nr",
+    "nbl"
+  ],
+  "suppressScript": "Latn"
+}

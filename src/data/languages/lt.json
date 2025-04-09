@@ -1,0 +1,12 @@
+{
+  "name": "Lithuanian",
+  "iso639_1": "lt",
+  "iso639_2": "lit",
+  "iso639_3": "lit",
+  "aliases": [
+    "lithuanian",
+    "lt",
+    "lit"
+  ],
+  "suppressScript": "Latn"
+}

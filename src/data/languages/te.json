@@ -1,0 +1,12 @@
+{
+  "name": "Telugu",
+  "iso639_1": "te",
+  "iso639_2": "tel",
+  "iso639_3": "tel",
+  "aliases": [
+    "telugu",
+    "te",
+    "tel"
+  ],
+  "suppressScript": "Telu"
+}

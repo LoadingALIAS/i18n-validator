@@ -1,0 +1,12 @@
+{
+  "name": "Bosnian",
+  "iso639_1": "bs",
+  "iso639_2": "bos",
+  "iso639_3": "bos",
+  "aliases": [
+    "bosnian",
+    "bs",
+    "bos"
+  ],
+  "suppressScript": "Latn"
+}

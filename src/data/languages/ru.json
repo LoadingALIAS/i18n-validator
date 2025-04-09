@@ -1,0 +1,12 @@
+{
+  "name": "Russian",
+  "iso639_1": "ru",
+  "iso639_2": "rus",
+  "iso639_3": "rus",
+  "aliases": [
+    "russian",
+    "ru",
+    "rus"
+  ],
+  "suppressScript": "Cyrl"
+}

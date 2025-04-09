@@ -1,0 +1,12 @@
+{
+  "name": "Kazakh",
+  "iso639_1": "kk",
+  "iso639_2": "kaz",
+  "iso639_3": "kaz",
+  "aliases": [
+    "kazakh",
+    "kk",
+    "kaz"
+  ],
+  "suppressScript": "Cyrl"
+}

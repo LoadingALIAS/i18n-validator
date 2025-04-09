@@ -1,0 +1,12 @@
+{
+  "name": "Faroese",
+  "iso639_1": "fo",
+  "iso639_2": "fao",
+  "iso639_3": "fao",
+  "aliases": [
+    "faroese",
+    "fo",
+    "fao"
+  ],
+  "suppressScript": "Latn"
+}

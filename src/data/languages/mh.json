@@ -1,0 +1,12 @@
+{
+  "name": "Marshallese",
+  "iso639_1": "mh",
+  "iso639_2": "mah",
+  "iso639_3": "mah",
+  "aliases": [
+    "marshallese",
+    "mh",
+    "mah"
+  ],
+  "suppressScript": "Latn"
+}

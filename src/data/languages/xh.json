@@ -1,0 +1,12 @@
+{
+  "name": "Xhosa",
+  "iso639_1": "xh",
+  "iso639_2": "xho",
+  "iso639_3": "xho",
+  "aliases": [
+    "xhosa",
+    "xh",
+    "xho"
+  ],
+  "suppressScript": "Latn"
+}

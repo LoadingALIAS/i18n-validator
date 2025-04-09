@@ -1,0 +1,13 @@
+{
+  "name": "Catalan",
+  "iso639_1": "ca",
+  "iso639_2": "cat",
+  "iso639_3": "cat",
+  "aliases": [
+    "catalan",
+    "valencian",
+    "ca",
+    "cat"
+  ],
+  "suppressScript": "Latn"
+}

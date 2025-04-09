@@ -1,0 +1,12 @@
+{
+  "name": "Hungarian",
+  "iso639_1": "hu",
+  "iso639_2": "hun",
+  "iso639_3": "hun",
+  "aliases": [
+    "hungarian",
+    "hu",
+    "hun"
+  ],
+  "suppressScript": "Latn"
+}

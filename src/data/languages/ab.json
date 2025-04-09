@@ -1,0 +1,12 @@
+{
+  "name": "Abkhazian",
+  "iso639_1": "ab",
+  "iso639_2": "abk",
+  "iso639_3": "abk",
+  "aliases": [
+    "abkhazian",
+    "ab",
+    "abk"
+  ],
+  "suppressScript": "Cyrl"
+}

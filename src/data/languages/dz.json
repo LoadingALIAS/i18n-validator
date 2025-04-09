@@ -1,0 +1,12 @@
+{
+  "name": "Dzongkha",
+  "iso639_1": "dz",
+  "iso639_2": "dzo",
+  "iso639_3": "dzo",
+  "aliases": [
+    "dzongkha",
+    "dz",
+    "dzo"
+  ],
+  "suppressScript": "Tibt"
+}

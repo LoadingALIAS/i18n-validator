@@ -1,0 +1,12 @@
+{
+  "name": "Mongolian",
+  "iso639_1": "mn",
+  "iso639_2": "mon",
+  "iso639_3": "mon",
+  "aliases": [
+    "mongolian",
+    "mn",
+    "mon"
+  ],
+  "scope": "macrolanguage"
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Oriya (macrolanguage)",
+  "iso639_1": "or",
+  "iso639_2": "ori",
+  "iso639_3": "ori",
+  "aliases": [
+    "oriya (macrolanguage)",
+    "oriya(macrolanguage)",
+    "oriya macrolanguage",
+    "oriyamacrolanguage",
+    "odia (macrolanguage)",
+    "odia(macrolanguage)",
+    "odia macrolanguage",
+    "odiamacrolanguage",
+    "or",
+    "ori"
+  ],
+  "suppressScript": "Orya",
+  "scope": "macrolanguage"
+}

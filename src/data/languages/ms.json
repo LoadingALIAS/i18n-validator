@@ -1,0 +1,16 @@
+{
+  "name": "Malay (macrolanguage)",
+  "iso639_1": "ms",
+  "iso639_2": "msa",
+  "iso639_3": "msa",
+  "aliases": [
+    "malay (macrolanguage)",
+    "malay(macrolanguage)",
+    "malay macrolanguage",
+    "malaymacrolanguage",
+    "ms",
+    "msa"
+  ],
+  "suppressScript": "Latn",
+  "scope": "macrolanguage"
+}

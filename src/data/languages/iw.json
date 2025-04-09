@@ -1,0 +1,11 @@
+{
+  "name": "Hebrew",
+  "iso639_1": "iw",
+  "iso639_2": "",
+  "iso639_3": "",
+  "aliases": [
+    "hebrew",
+    "iw"
+  ],
+  "suppressScript": "Hebr"
+}

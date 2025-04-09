@@ -1,0 +1,12 @@
+{
+  "name": "Irish",
+  "iso639_1": "ga",
+  "iso639_2": "gle",
+  "iso639_3": "gle",
+  "aliases": [
+    "irish",
+    "ga",
+    "gle"
+  ],
+  "suppressScript": "Latn"
+}

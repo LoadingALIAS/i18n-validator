@@ -1,0 +1,13 @@
+{
+  "name": "Western Frisian",
+  "iso639_1": "fy",
+  "iso639_2": "fry",
+  "iso639_3": "fry",
+  "aliases": [
+    "western frisian",
+    "westernfrisian",
+    "fy",
+    "fry"
+  ],
+  "suppressScript": "Latn"
+}

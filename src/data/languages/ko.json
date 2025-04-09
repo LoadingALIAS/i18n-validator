@@ -1,0 +1,12 @@
+{
+  "name": "Korean",
+  "iso639_1": "ko",
+  "iso639_2": "kor",
+  "iso639_3": "kor",
+  "aliases": [
+    "korean",
+    "ko",
+    "kor"
+  ],
+  "suppressScript": "Kore"
+}

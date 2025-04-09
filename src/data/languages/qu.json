@@ -1,0 +1,13 @@
+{
+  "name": "Quechua",
+  "iso639_1": "qu",
+  "iso639_2": "que",
+  "iso639_3": "que",
+  "aliases": [
+    "quechua",
+    "qu",
+    "que"
+  ],
+  "suppressScript": "Latn",
+  "scope": "macrolanguage"
+}

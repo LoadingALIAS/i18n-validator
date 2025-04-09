@@ -1,0 +1,13 @@
+{
+  "name": "Guarani",
+  "iso639_1": "gn",
+  "iso639_2": "grn",
+  "iso639_3": "grn",
+  "aliases": [
+    "guarani",
+    "gn",
+    "grn"
+  ],
+  "suppressScript": "Latn",
+  "scope": "macrolanguage"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Swedish",
+  "iso639_1": "sv",
+  "iso639_2": "swe",
+  "iso639_3": "swe",
+  "aliases": [
+    "swedish",
+    "sv",
+    "swe"
+  ],
+  "suppressScript": "Latn"
+}

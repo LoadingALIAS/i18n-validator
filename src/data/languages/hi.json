@@ -1,0 +1,12 @@
+{
+  "name": "Hindi",
+  "iso639_1": "hi",
+  "iso639_2": "hin",
+  "iso639_3": "hin",
+  "aliases": [
+    "hindi",
+    "hi",
+    "hin"
+  ],
+  "suppressScript": "Deva"
+}

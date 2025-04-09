@@ -1,0 +1,12 @@
+{
+  "name": "Italian",
+  "iso639_1": "it",
+  "iso639_2": "ita",
+  "iso639_3": "ita",
+  "aliases": [
+    "italian",
+    "it",
+    "ita"
+  ],
+  "suppressScript": "Latn"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Kalaallisut",
+  "iso639_1": "kl",
+  "iso639_2": "kal",
+  "iso639_3": "kal",
+  "aliases": [
+    "kalaallisut",
+    "greenlandic",
+    "kl",
+    "kal"
+  ],
+  "suppressScript": "Latn"
+}

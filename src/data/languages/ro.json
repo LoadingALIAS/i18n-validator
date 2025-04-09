@@ -1,0 +1,14 @@
+{
+  "name": "Romanian",
+  "iso639_1": "ro",
+  "iso639_2": "ron",
+  "iso639_3": "ron",
+  "aliases": [
+    "romanian",
+    "moldavian",
+    "moldovan",
+    "ro",
+    "ron"
+  ],
+  "suppressScript": "Latn"
+}

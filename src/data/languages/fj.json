@@ -1,0 +1,12 @@
+{
+  "name": "Fijian",
+  "iso639_1": "fj",
+  "iso639_2": "fij",
+  "iso639_3": "fij",
+  "aliases": [
+    "fijian",
+    "fj",
+    "fij"
+  ],
+  "suppressScript": "Latn"
+}

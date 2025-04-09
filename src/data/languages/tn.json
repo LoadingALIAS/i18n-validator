@@ -1,0 +1,12 @@
+{
+  "name": "Tswana",
+  "iso639_1": "tn",
+  "iso639_2": "tsn",
+  "iso639_3": "tsn",
+  "aliases": [
+    "tswana",
+    "tn",
+    "tsn"
+  ],
+  "suppressScript": "Latn"
+}

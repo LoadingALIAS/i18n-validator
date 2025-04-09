@@ -1,0 +1,12 @@
+{
+  "name": "Basque",
+  "iso639_1": "eu",
+  "iso639_2": "eus",
+  "iso639_3": "eus",
+  "aliases": [
+    "basque",
+    "eu",
+    "eus"
+  ],
+  "suppressScript": "Latn"
+}

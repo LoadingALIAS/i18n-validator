@@ -1,0 +1,12 @@
+{
+  "name": "Tamil",
+  "iso639_1": "ta",
+  "iso639_2": "tam",
+  "iso639_3": "tam",
+  "aliases": [
+    "tamil",
+    "ta",
+    "tam"
+  ],
+  "suppressScript": "Taml"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Vietnamese",
+  "iso639_1": "vi",
+  "iso639_2": "vie",
+  "iso639_3": "vie",
+  "aliases": [
+    "vietnamese",
+    "vi",
+    "vie"
+  ],
+  "suppressScript": "Latn"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Norwegian",
+  "iso639_1": "no",
+  "iso639_2": "nor",
+  "iso639_3": "nor",
+  "aliases": [
+    "norwegian",
+    "no",
+    "nor"
+  ],
+  "suppressScript": "Latn",
+  "scope": "macrolanguage"
+}

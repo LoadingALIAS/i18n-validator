@@ -1,0 +1,12 @@
+{
+  "name": "Amharic",
+  "iso639_1": "am",
+  "iso639_2": "amh",
+  "iso639_3": "amh",
+  "aliases": [
+    "amharic",
+    "am",
+    "amh"
+  ],
+  "suppressScript": "Ethi"
+}

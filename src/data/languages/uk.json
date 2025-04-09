@@ -1,0 +1,12 @@
+{
+  "name": "Ukrainian",
+  "iso639_1": "uk",
+  "iso639_2": "ukr",
+  "iso639_3": "ukr",
+  "aliases": [
+    "ukrainian",
+    "uk",
+    "ukr"
+  ],
+  "suppressScript": "Cyrl"
+}

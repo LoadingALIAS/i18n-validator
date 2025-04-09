@@ -1,0 +1,13 @@
+{
+  "name": "Aymara",
+  "iso639_1": "ay",
+  "iso639_2": "aym",
+  "iso639_3": "aym",
+  "aliases": [
+    "aymara",
+    "ay",
+    "aym"
+  ],
+  "suppressScript": "Latn",
+  "scope": "macrolanguage"
+}

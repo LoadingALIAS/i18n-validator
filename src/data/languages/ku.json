@@ -1,0 +1,12 @@
+{
+  "name": "Kurdish",
+  "iso639_1": "ku",
+  "iso639_2": "kur",
+  "iso639_3": "kur",
+  "aliases": [
+    "kurdish",
+    "ku",
+    "kur"
+  ],
+  "scope": "macrolanguage"
+}

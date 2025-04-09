@@ -1,0 +1,12 @@
+{
+  "name": "Sango",
+  "iso639_1": "sg",
+  "iso639_2": "sag",
+  "iso639_3": "sag",
+  "aliases": [
+    "sango",
+    "sg",
+    "sag"
+  ],
+  "suppressScript": "Latn"
+}

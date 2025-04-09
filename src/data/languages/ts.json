@@ -1,0 +1,12 @@
+{
+  "name": "Tsonga",
+  "iso639_1": "ts",
+  "iso639_2": "tso",
+  "iso639_3": "tso",
+  "aliases": [
+    "tsonga",
+    "ts",
+    "tso"
+  ],
+  "suppressScript": "Latn"
+}

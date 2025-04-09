@@ -1,0 +1,14 @@
+{
+  "name": "Nyanja",
+  "iso639_1": "ny",
+  "iso639_2": "nya",
+  "iso639_3": "nya",
+  "aliases": [
+    "nyanja",
+    "chewa",
+    "chichewa",
+    "ny",
+    "nya"
+  ],
+  "suppressScript": "Latn"
+}

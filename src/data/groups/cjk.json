@@ -1,0 +1,24 @@
+{
+  "name": "CJK Languages",
+  "description": "Chinese, Japanese, and Korean languages and scripts",
+  "languages": [
+    "zh",
+    "ja",
+    "ko"
+  ],
+  "regions": [
+    "CN",
+    "HK",
+    "TW",
+    "JP",
+    "KR"
+  ],
+  "scripts": [
+    "Hans",
+    "Hant",
+    "Hani",
+    "Kana",
+    "Hira",
+    "Hang"
+  ]
+}

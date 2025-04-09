@@ -1,0 +1,12 @@
+{
+  "name": "Moldavian",
+  "iso639_1": "mo",
+  "iso639_2": "",
+  "iso639_3": "",
+  "aliases": [
+    "moldavian",
+    "moldovan",
+    "mo"
+  ],
+  "suppressScript": "Latn"
+}

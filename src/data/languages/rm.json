@@ -1,0 +1,12 @@
+{
+  "name": "Romansh",
+  "iso639_1": "rm",
+  "iso639_2": "roh",
+  "iso639_3": "roh",
+  "aliases": [
+    "romansh",
+    "rm",
+    "roh"
+  ],
+  "suppressScript": "Latn"
+}

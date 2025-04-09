@@ -1,0 +1,16 @@
+{
+  "name": "Swahili (macrolanguage)",
+  "iso639_1": "sw",
+  "iso639_2": "swa",
+  "iso639_3": "swa",
+  "aliases": [
+    "swahili (macrolanguage)",
+    "swahili(macrolanguage)",
+    "swahili macrolanguage",
+    "swahilimacrolanguage",
+    "sw",
+    "swa"
+  ],
+  "suppressScript": "Latn",
+  "scope": "macrolanguage"
+}

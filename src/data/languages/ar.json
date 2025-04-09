@@ -1,0 +1,13 @@
+{
+  "name": "Arabic",
+  "iso639_1": "ar",
+  "iso639_2": "ara",
+  "iso639_3": "ara",
+  "aliases": [
+    "arabic",
+    "ar",
+    "ara"
+  ],
+  "suppressScript": "Arab",
+  "scope": "macrolanguage"
+}

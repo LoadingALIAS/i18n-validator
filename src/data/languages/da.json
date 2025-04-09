@@ -1,0 +1,12 @@
+{
+  "name": "Danish",
+  "iso639_1": "da",
+  "iso639_2": "dan",
+  "iso639_3": "dan",
+  "aliases": [
+    "danish",
+    "da",
+    "dan"
+  ],
+  "suppressScript": "Latn"
+}
