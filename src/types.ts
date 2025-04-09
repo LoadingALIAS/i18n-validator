@@ -1,7 +1,3 @@
-/**
- * MODIFY: Refined public and internal types
- */
-
 /** Core types: LanguageData, RegionData, ScriptData, NormalizedResult */
 export type LanguageData = {
   name: string;
@@ -61,10 +57,4 @@ export interface FuzzyMatch {
   type: "language" | "region" | "script";
   data: LanguageData | RegionData | ScriptData;
   rank: number;
-}
-
-/** Cache options for performance optimization */
-export interface CacheOptions {
-  maxSize?: number;
-  ttl?: number; // Time to live in milliseconds
 }

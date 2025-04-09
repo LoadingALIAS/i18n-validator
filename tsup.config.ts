@@ -19,8 +19,5 @@ export default defineConfig({
   loader: {
     ".json": "json",
   },
-  noExternal: [/.*/],
-  external: [
-    // Add any runtime dependencies that should not be bundled
-  ],
+  external: ["../data/languages.json", "../data/regions.json", "../data/scripts.json"],
 });
