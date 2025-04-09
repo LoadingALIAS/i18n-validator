@@ -242,6 +242,11 @@ export function addMockLanguage(data: LanguageData) {
   const currentScripts = getTestScripts();
 
   // Convert Maps to Records
+  const languagesRecord: Record<string, LanguageData> = {
+    ...Object.fromEntries(currentLanguages.entries()),
+    ...languages,
+  };
+
   const regionsRecord: Record<string, RegionData> = {};
   currentRegions.forEach((value, key) => {
     regionsRecord[key] = value;
@@ -252,7 +257,7 @@ export function addMockLanguage(data: LanguageData) {
     scriptsRecord[key] = value;
   });
 
-  setTestData(languages, regionsRecord, scriptsRecord);
+  setTestData(languagesRecord, regionsRecord, scriptsRecord);
   vi.mocked(config.isDataLoaded).mockReturnValue(true);
 }
 
@@ -271,12 +276,17 @@ export function addMockRegion(data: RegionData) {
     languagesRecord[key] = value;
   });
 
+  const regionsRecord: Record<string, RegionData> = {
+    ...Object.fromEntries(currentRegions.entries()),
+    ...regions,
+  };
+
   const scriptsRecord: Record<string, ScriptData> = {};
   currentScripts.forEach((value, key) => {
     scriptsRecord[key] = value;
   });
 
-  setTestData(languagesRecord, regions, scriptsRecord);
+  setTestData(languagesRecord, regionsRecord, scriptsRecord);
   vi.mocked(config.isDataLoaded).mockReturnValue(true);
 }
 
@@ -300,7 +310,12 @@ export function addMockScript(data: ScriptData) {
     regionsRecord[key] = value;
   });
 
-  setTestData(languagesRecord, regionsRecord, scripts);
+  const scriptsRecord: Record<string, ScriptData> = {
+    ...Object.fromEntries(currentScripts.entries()),
+    ...scripts,
+  };
+
+  setTestData(languagesRecord, regionsRecord, scriptsRecord);
   vi.mocked(config.isDataLoaded).mockReturnValue(true);
 }
 
